@@ -1,8 +1,11 @@
 #ifndef TStarArrays_h
 #define TStarArrays_h
 
+#include "TClass.h"
+
 #include <map>
 #include <string>
+//#include <functional>
 
 class TClonesArray;
 class TTree;
@@ -13,52 +16,61 @@ class TStarJet;
 class TStarTrack;
 class TStarTower;
 class TStarGenTrack;
+class TStarVector;
 
 class StPythiaEvent;
 
-class TStarArrays {
+class TStarArrays : public TClass {
 public:
     TStarArrays();
     virtual ~TStarArrays();
 
-    void addArray(std::string name);
-    void setBranch(TTree* tree);
-    void clearArrays();
+    static void addArray(std::string name);
+    static void setBranch(TTree* tree);
+    static void clearArrays();
+    static void ignoreTObjectStreamer();
 
-    TStarEvent* addEvent();
-    StPythiaEvent* addPythiaEvent();
-    TStarTrack* addTrack();
-    TStarTower* addTower();
-    TStarJet* addJet();
-    TStarGenTrack* addGenTrack();
-    TStarJet* addGenJet();
+    static TStarEvent* addEvent();
+    static StPythiaEvent* addPythiaEvent();
+    static TStarTrack* addTrack();
+    static TStarTower* addTower();
+    static TStarJet* addJet();
+    static TStarGenTrack* addGenTrack();
+    static TStarJet* addGenJet();
 
-    unsigned int numberOfTracks(){return nArrayElements("tracks");}
-    unsigned int numberOfTowers(){return nArrayElements("towers");}
-    unsigned int numberOfJets(){return nArrayElements("jets");}
-    unsigned int numberOfGenTracks(){return nArrayElements("genTracks");}
-    unsigned int numberOfGenJets(){return nArrayElements("genJets");}
+    static unsigned int numberOfTracks(){return nArrayElements("tracks");}
+    static unsigned int numberOfTowers(){return nArrayElements("towers");}
+    static unsigned int numberOfJets(){return nArrayElements("jets");}
+    static unsigned int numberOfGenTracks(){return nArrayElements("genTracks");}
+    static unsigned int numberOfGenJets(){return nArrayElements("genJets");}
     
-    TStarEvent* getEvent();
-    StPythiaEvent* getPythiaEvent();
-    TStarTrack* getTrack(unsigned int i);
-    TStarTower* getTower(unsigned int i);
-    TStarJet* getJet(unsigned int i);
-    TStarGenTrack* getGenTrack(unsigned int i);
-    TStarJet* getGenJet(unsigned int i);
+    static TStarEvent* getEvent();
+    static StPythiaEvent* getPythiaEvent();
+    static TStarTrack* getTrack(unsigned int i);
+    static TStarTower* getTower(unsigned int i);
+    static TStarJet* getJet(unsigned int i);
+    static TStarGenTrack* getGenTrack(unsigned int i);
+    static TStarJet* getGenJet(unsigned int i);
+    static TStarVector* getVector(const std::string& arrName, unsigned int i);    
 
-    TClonesArray* getArray(const std::string& name);
+    //static TClonesArray* getArray(const std::string& name);
+
+    static bool hasArray(const std::string& name);
+
+    static TObject* addArrayElement(const std::string& name);
+
+    static unsigned int nArrayElements(const std::string& name);
+    static TObject* getArrayElement(const std::string& name, unsigned int i);
 
 private:
-    TObject* addArrayElement(const std::string& name);
-
-    unsigned int nArrayElements(const std::string& name);
-    TObject* getArrayElement(const std::string& name, unsigned int i);
-
     static std::map<std::string, TClonesArray*> Arrays;
 
     static std::map<std::string, std::string> Types;
     static std::map<std::string, int> Sizes;
+
+    //static std::map<std::string, std::function<double(TObject*)>> varNames;
+
+    ClassDef(TStarArrays, 1)
 };
 
 

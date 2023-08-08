@@ -3,9 +3,9 @@
 
 //STAR includes
 #include "StMaker.h"
-#include "StRoot/TStarEventClass/TStarJet.h"
 
-//class TStarVector;
+class TStarJet;
+class TStarVector;
 
 class TFile;
 class TH1F;
@@ -32,10 +32,8 @@ class StMyJetMaker : public StMaker{
         // class required functions
         virtual Int_t Init();
         virtual Int_t Make();
-        //virtual Int_t Clear();
+        virtual void  Clear(Option_t *option="");
         virtual Int_t Finish();
-
-        void clearAll();
 
         void addConstituentVector(const TStarVector& v);
 
@@ -48,6 +46,7 @@ class StMyJetMaker : public StMaker{
         void setBkgJetAlgorithm(std::string alg);
         
         unsigned int clusterJets();
+        int clusterAndStoreJets();
         void writeHistograms();
         void declareHistograms();
 
@@ -74,7 +73,7 @@ class StMyJetMaker : public StMaker{
         double getEventSigma(){return eventSigma;}
 
         unsigned int numberOfJets();
-        TStarJet getJet(unsigned int i);
+        TStarJet* getJet(unsigned int i);
 
     private:
         class StPseudoJetUserInfo;
@@ -84,7 +83,6 @@ class StMyJetMaker : public StMaker{
         StPseudoJetContainer* fullEvent = nullptr;
 
         StPseudoJetContainer* jets = nullptr;
-        //TStarJet* tsJet = nullptr;
 
         double eventRho = 0.0; //Rho of the event
         double eventSigma = 0.0; //Sigma of the event
@@ -97,6 +95,8 @@ class StMyJetMaker : public StMaker{
         bool doAreaCalc = false;
         bool doBkgEst = false;
         bool doBkgSub = false;
+
+        bool isGenLevel = false;
 
         bool useSameVectorForBkg = true;
 

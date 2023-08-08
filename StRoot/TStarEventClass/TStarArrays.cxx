@@ -12,7 +12,9 @@
 #include "TStarTrack.h"
 #include "TStarTower.h"
 #include "TStarGenTrack.h"
-#include "StPythiaEventMaker/StPythiaEvent.h"
+#include "StRoot/StPythiaEventMaker/StPythiaEvent.h"
+
+ClassImp(TStarArrays);
 
 using namespace std;
 
@@ -32,7 +34,14 @@ map<string, int> TStarArrays::Sizes = {
     {"genJets", 100}
 };
 
-TStarArrays::TStarArrays() {
+//map<string, function<double(TObject*)>> TStarArrays::varNames = {
+//    {"Pt", [](TObject* obj){return static_cast<TStarVector*>(obj)->pt();}},
+//    {"Eta", [](TObject* obj){return static_cast<TStarVector*>(obj)->eta();}},
+//    {"Phi", [](TObject* obj){return static_cast<TStarVector*>(obj)->phi();}}
+//};
+
+
+TStarArrays::TStarArrays() : TClass("TStarArrays") {
 
 }
 
@@ -45,6 +54,12 @@ void TStarArrays::addArray(string name) {
     assert(arrFinder != Types.end());
     
     Arrays[name] = new TClonesArray(arrFinder->second.c_str(), Sizes[name]);
+}
+
+void TStarArrays::ignoreTObjectStreamer() {
+    TStarEvent::Class()->IgnoreTObjectStreamer();
+    StPythiaEvent::Class()->IgnoreTObjectStreamer();
+    TStarVector::Class()->IgnoreTObjectStreamer();
 }
 
 void TStarArrays::setBranch(TTree* tree) {
@@ -86,7 +101,7 @@ unsigned int TStarArrays::nArrayElements(const string& name){
 TObject* TStarArrays::getArrayElement(const string& name, unsigned int i){
     auto arrFinder = Arrays.find(name);
     assert((void(name+"Array not found! \n"), arrFinder != Arrays.end()));
-
+    assert((void("Index out of range! \n"), i < arrFinder->second->GetEntriesFast()));
     return arrFinder->second->At(i);
 }
 TStarEvent* TStarArrays::getEvent(){return static_cast<TStarEvent*>(getArrayElement("event", 0));}
@@ -96,4 +111,13 @@ TStarTower* TStarArrays::getTower(unsigned int i){return static_cast<TStarTower*
 TStarJet* TStarArrays::getJet(unsigned int i){return static_cast<TStarJet*>(getArrayElement("jets", i));}
 TStarGenTrack* TStarArrays::getGenTrack(unsigned int i){return static_cast<TStarGenTrack*>(getArrayElement("genTracks", i));}
 TStarJet* TStarArrays::getGenJet(unsigned int i){return static_cast<TStarJet*>(getArrayElement("genJets", i));}
+TStarVector* TStarArrays::getVector(const string& arrName, unsigned int i){
+    TStarVector* vec = dynamic_cast<TStarVector*>(getArrayElement(arrName, i));
+    assert((void("Object is not a TStarVector! \n"), vec != nullptr));
+    return vec;
+}
 
+bool TStarArrays::hasArray(const string& name){
+    auto arrFinder = Arrays.find(name);
+    return arrFinder != Arrays.end();
+}

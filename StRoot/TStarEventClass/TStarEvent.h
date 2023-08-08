@@ -31,6 +31,7 @@ public:
 
     bool isMBmon() const {return isTriggered("MBmon");}
     bool isMB5() const {return isTriggered("VPDMB5");}
+    bool isVPDMB() const {return isTriggered("VPDMB");}
     bool isMB30() const {return isTriggered("VPDMB30");}
     bool isMB() const {return (isMBmon() || isMB5() || isMB30());}
 
@@ -54,8 +55,10 @@ public:
     double maxJetPt() const {return _MaxJetPt;}
     double maxGenJetPt() const {return _MaxGenJetPt;}
 
-//Modifiers
+    static std::string& runFlag() {return _RunFlag;}
 
+//Modifiers
+    static void setRunFlag(unsigned int flag){_RunFlag = "Run" + std::to_string(flag);}
     void setEvent(const TStarEvent& ev);
 
     void setIdNumbers(unsigned int runid, unsigned int eventid){_RunID = runid; _EventID = eventid;}
@@ -99,8 +102,8 @@ public:
     double          _VPD_Vz        = -999;
     double          _ZDCxx         = 0; 
     double          _BBCxx         = 0; 
-    double          _Rho           = 0;
-    double          _Sigma         = 0;
+    double          _Rho           = 0; //!
+    double          _Sigma         = 0; //!
     double          _MaxTrackPt    = 0;
     double          _MaxGenTrackPt = 0;
     double          _MaxTowerEt    = 0;
@@ -108,8 +111,8 @@ public:
     double          _MaxGenJetPt   = 0;
 
 private:
-
-    static std::map<std::string, std::vector<unsigned int>> _triggerMap;
+    static std::string _RunFlag; 
+    static std::map<std::string, std::vector<unsigned int>> _triggerMap; //!
 
     ClassDef(TStarEvent, 3)
 };

@@ -3,6 +3,7 @@
 #pragma link off all classes;
 #pragma link off all functions;
 #ifdef __CINT__
+#pragma link C++ class TStarArrays+;
 #pragma link C++ class TStarEvent+;
 #pragma link C++ class TStarGenTrack+;
 #pragma link C++ class TStarJet+;

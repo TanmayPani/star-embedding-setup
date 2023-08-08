@@ -142,6 +142,7 @@ public:
   void setDF2(PDF scenario, float val);
   void setF1(PDF scenario, float val);
   void setF2(PDF scenario, float val);
+  void set(const StPythiaEvent& event);
   
   void addParticle(const TParticle& particle);
   void print() const;

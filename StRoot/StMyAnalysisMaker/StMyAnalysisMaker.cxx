@@ -51,8 +51,10 @@ StMaker(name.c_str()){
     }
 
     anaName = name; 
-    outputFileName = "EventTree_"+output;
-    histoFileName = "Histograms_"+output;
+    outputFileName = output;
+    outputFileName.insert(outputFileName.find(".root"), ".tree");
+    histoFileName = output;
+    histoFileName.insert(histoFileName.find(".root"), ".hist");
 
     if(doDebug){
         cout<<"Name of the StMaker instance : "<<anaName<<endl;
@@ -63,8 +65,6 @@ StMaker(name.c_str()){
     towerHadCorrSumTrE.resize(4800);
     towerHadCorrMaxTrE.resize(4800);
     towerNTracksMatched.resize(4800);
-
-    tsArrays = new TStarArrays();
 
     if(doDebug)cout<<"StMyAnalysisMaker::StMyAnalysisMaker() completed"<<endl;
 }
@@ -88,6 +88,10 @@ StMyAnalysisMaker::~StMyAnalysisMaker(){
 
 Int_t StMyAnalysisMaker::Init(){
     if(doDebug)cout<<"***********StMyAnalysisMaker::Init()**************"<<endl;
+
+    int returnCode = getMakers();
+    if(returnCode >= 0)return returnCode;
+
     if(!doppAnalysis){
         grefmultCorr = CentralityMaker::instance()->getgRefMultCorr_P18ih_VpdMB30_AllLumi();
         if(doDebug){
@@ -95,16 +99,15 @@ Int_t StMyAnalysisMaker::Init(){
             grefmultCorr->print();
         }
 
-        grefmultCorrUtil = new StRefMultCorr("grefmult_P18ih_VpdMB30_AllLumi_MB5sc");
-        grefmultCorrUtil->setVzForWeight(16, -16.0, 16.0);
-        grefmultCorrUtil->readScaleForWeight("StRoot/StRefMultCorr/macros/weight_grefmult_vpd30_vpd5_Run14_P18ih_set1.txt");
+        //grefmultCorrUtil = new StRefMultCorr("grefmult_P18ih_VpdMB30_AllLumi_MB5sc");
+        //grefmultCorrUtil->setVzForWeight(16, -16.0, 16.0);
+        //grefmultCorrUtil->readScaleForWeight("StRoot/StRefMultCorr/macros/weight_grefmult_vpd30_vpd5_Run14_P18ih_set1.txt");
     }
 
     if(!doRunbyRun)setUpBadRuns(); //Probably deprecated, might add this into StRefMultCorr
 
     setUpBadTowers();//There may be a better way
     setUpDeadTowers();//There may be a better way
-    declareHistograms();
 
     string efficiencyFileName;
 
@@ -123,23 +126,26 @@ Int_t StMyAnalysisMaker::Init(){
     if(doDebug)cout<<"Setting up StEmcPosition2..."<<endl;
     emcPosition = new StEmcPosition2();
 
-    TStarEvent::Class()->IgnoreTObjectStreamer();
-    TStarVector::Class()->IgnoreTObjectStreamer();
-
-    tsArrays->addArray("event");
-    tsArrays->addArray("tracks");
-    tsArrays->addArray("towers");
-    if(doEmbedding)tsArrays->addArray("genTracks");
-    if(doJetAnalysis)tsArrays->addArray("jets");
-    if(doEmbedding && doJetAnalysis)tsArrays->addArray("genJets");
-
-    bookTree();
+    TStarEvent::setRunFlag(runFlag);
 
     if(doDebug)cout<<"***********END OF StMyAnalysisMaker::Init()**************"<<endl;
 
-   // if(treeOut->IsOpen())   treeOut->Close();
+    for(auto& hist : histos1D){
+        hist.second->Sumw2();
+    }
+
+    for(auto& hist : histos2D){
+        hist.second->Sumw2();
+    }
 
     return kStOK;
+}
+
+void StMyAnalysisMaker::Clear(Option_t *option){
+    if(doDebug)cout<<"***********StMyAnalysisMaker::Clear()**************"<<endl;
+    //TStarArrays::clearArrays();
+    //cout<<"clear 1 !"<<endl;
+    if(doDebug)cout<<"***********END OF StMyAnalysisMaker::Clear()**************"<<endl;
 }
 
 void StMyAnalysisMaker::writeHistograms(){
@@ -166,13 +172,6 @@ void StMyAnalysisMaker::writeHistograms(){
 Int_t StMyAnalysisMaker::Finish(){
     cout<< "StMyAnalysisMaker::Finish()"<<endl;
 
-    if(outputFileName != ""){
-        if(doDebug)cout<<"Writing tree to "<<outputFileName<<endl;
-        //treeOut->cd();
-        treeOut->Write();
-        treeOut->Close();
-    }
-
     writeHistograms(); 
 
     efficiencyFile->Close();
@@ -183,42 +182,10 @@ Int_t StMyAnalysisMaker::Finish(){
 Int_t StMyAnalysisMaker::Make(){
     if(doEventDebug)cout<<"***********StMyAnalysisMaker::Make()**************"<<endl;
 
-    tsArrays->clearArrays();
+    TStarArrays::clearArrays();
 
-    int makerReturnInt = getMakers();
-    if(makerReturnInt >= 0)return kStOK;
-    
-    //Reject bad runs here..., if doing run by run jobs, reject bad runs while submitting jobs
-    runID = picoEvent->runId();
-    if(!doRunbyRun && badRuns.count(runID)>0){
-        if(doEventDebug)cout<<"Bad run: "<<runID<<endl;
-        return kStOK;
-    }histos1D["hEventStats"]->Fill(1);
-
-    pVtx = picoEvent->primaryVertex();
-    //primary Z vertex cut...
-    if(abs(pVtx.z()) > absZVtx_Max){
-        if(doEventDebug)cout<<"Bad Z vertex: "<<pVtx.z()<<endl;
-        return kStOK;
-    }histos1D["hEventStats"]->Fill(2);
-
-    tsEvent = tsArrays->addEvent();
-    tsEvent->setIdNumbers(runID, picoEvent->eventId());
-    tsEvent->setPrimaryVertex(pVtx);
-    tsEvent->setRefMults(picoEvent->grefMult(), picoEvent->refMult()); 
-    tsEvent->setZDCCoincidence(picoEvent->ZDCx());
-    tsEvent->setBBCCoincidence(picoEvent->BBCx());
-    tsEvent->setVPDVz(picoEvent->vzVpd());
-
-    if(!doppAnalysis){
-        makerReturnInt = runStRefMultCorr();
-        if(makerReturnInt >= 0) return makerReturnInt;
-    }
-
-    if(!doEmbedding){
-        makerReturnInt = setUpTriggers();
-        if(makerReturnInt >= 0) return makerReturnInt;
-    }else{if(doEventDebug)cout<<"Embedding mode, skipping trigger selection here..."<<endl;}
+    int makerReturnInt = makeEvent();
+    if(makerReturnInt >= 0)return makerReturnInt;
 
     makerReturnInt = makeDetectorLevel();
     if(doEmbedding){makerReturnInt = makeGenLevel();}
@@ -229,9 +196,6 @@ Int_t StMyAnalysisMaker::Make(){
         tsEvent->Print();
         cout<<"Filling tree"<<endl;
     }
-    histos1D["hEventStats"]->Fill(10);
-
-    tree->Fill();
 
     if(doEventDebug)cout<<"**************Finished StMyAnalysisMaker::Make()********************"<<endl;
 
@@ -245,24 +209,6 @@ int StMyAnalysisMaker::getMakers(){
         return kStFatal;
     }if(doEventDebug)cout<<"Got StPicoDstMaker!"<<endl;
 
-    picoDst = static_cast<StPicoDst*>(picoDstMaker->picoDst());
-    if(!picoDst){
-        cout << " No PicoDst! Skip! " << endl;
-        return kStWarn;
-    }if(doEventDebug)cout<<"Got StPicoDst!"<<endl;
-
-    picoEvent = static_cast<StPicoEvent*>(picoDst->event());
-    if(!picoEvent){
-        cout<<" No PicoEvent! Skip! " << endl;
-        return kStWarn;
-    }if(doEventDebug){cout<<"Got StPicoEvent!"<<endl;
-        cout<<"************ StPicoDst::print() *************"<<endl;
-        picoDst->print();
-        //picoDst->printTracks();
-        //picoDst->printBTowHits();
-        cout<<"************ END StPicoDst::print() *************"<<endl;
-    }histos1D["hEventStats"]->Fill(0);
-
     if(doJetAnalysis){
         if(doJetDebug)cout<<"Getting jet maker..."<<endl;
         jetMaker = static_cast<StMyJetMaker*>(GetMaker("jetMaker"));
@@ -274,20 +220,11 @@ int StMyAnalysisMaker::getMakers(){
 
     if(doEmbedding){
         if(doPythiaEvent){
-            pythiaEventMaker = static_cast<StPythiaEventMaker*>(GetMaker("StPythiaEventMaker"));
+            pythiaEventMaker = static_cast<StPythiaEventMaker*>(GetMaker("pythiaEventMaker"));
             if(!pythiaEventMaker){
                 cout<<" No Pythia event maker found!"<<endl;
                 return kStFatal;
             }if(doEventDebug)cout<<"Got Pythia event maker!"<<endl;
-            pythiaEvent = static_cast<StPythiaEvent*>(pythiaEventMaker->pythiaEvent());
-            if(!pythiaEvent){
-                cout<<" No Pythia event found! SKIP!"<<endl;
-                return kStWarn;
-            }if(doEventDebug)cout<<"Got Pythia event!"<<endl;
-            if((pythiaEvent->runId() != picoEvent->runId()) || (pythiaEvent->eventId() != picoEvent->eventId())){
-                cout<<"Pythia event and Pico event out of sync! SKIP!"<<endl;
-                return kStWarn;
-            }if(doEventDebug)cout<<"Pythia event and Pico event in sync!"<<endl;
         }
         if(doJetAnalysis){
             if(doJetDebug)cout<<"Getting gen-level jet maker..."<<endl;
@@ -301,6 +238,63 @@ int StMyAnalysisMaker::getMakers(){
     return -1;
 }
 
+int StMyAnalysisMaker::makeEvent(){
+    picoEvent = static_cast<StPicoEvent*>(StPicoDst::event());
+    if(!picoEvent){
+        cout<<" No PicoEvent! Skip! " << endl;
+        return kStWarn;
+    }if(doEventDebug){cout<<"Got StPicoEvent!"<<endl;}fillHist1D("hEventStats", 0);
+
+    if(pythiaEventMaker){
+        if(doEventDebug)cout<<"Getting Pythia event..."<<endl;
+        pythiaEvent = static_cast<StPythiaEvent*>(pythiaEventMaker->pythiaEvent());
+        if(!pythiaEvent){
+            cout<<" No Pythia event found! SKIP!"<<endl;
+            return kStWarn;
+        }if(doEventDebug)cout<<"Got Pythia event!"<<endl;
+
+        if((pythiaEvent->runId() != picoEvent->runId()) || (pythiaEvent->eventId() != picoEvent->eventId())){
+            cout<<"Pythia event and Pico event out of sync! SKIP!"<<endl;
+            return kStWarn;
+        }if(doEventDebug)cout<<"Pythia event and Pico event in sync!"<<endl;
+    }
+
+    //Reject bad runs here..., if doing run by run jobs, reject bad runs while submitting jobs
+    runID = picoEvent->runId();
+    if(!doRunbyRun && badRuns.count(runID)>0){
+        if(doEventDebug)cout<<"Bad run: "<<runID<<endl;
+        return kStOK;
+    }fillHist1D("hEventStats", 1);
+
+    pVtx = picoEvent->primaryVertex();
+    //primary Z vertex cut...
+    if(abs(pVtx.z()) > absZVtx_Max){
+        if(doEventDebug)cout<<"Bad Z vertex: "<<pVtx.z()<<endl;
+        return kStOK;
+    }fillHist1D("hEventStats", 2);
+
+    tsEvent = TStarArrays::addEvent();
+    tsEvent->setIdNumbers(runID, picoEvent->eventId());
+    tsEvent->setPrimaryVertex(pVtx);
+    tsEvent->setRefMults(picoEvent->grefMult(), picoEvent->refMult()); 
+    tsEvent->setZDCCoincidence(picoEvent->ZDCx());
+    tsEvent->setBBCCoincidence(picoEvent->BBCx());
+    tsEvent->setVPDVz(picoEvent->vzVpd());
+
+    if(!doppAnalysis){
+        int makerReturnInt = runStRefMultCorr();
+        if(makerReturnInt >= 0) return makerReturnInt;
+    }
+
+    if(!doEmbedding){
+        int makerReturnInt = setUpTriggers();
+        if(makerReturnInt >= 0) return makerReturnInt;
+    }else if(doEventDebug)cout<<"Embedding mode, skipping trigger selection here..."<<endl;
+
+    return -1;
+
+}
+
 int StMyAnalysisMaker::makeDetectorLevel(){
     if(doEventDebug)cout<<"************StMyAnalysisMaker::makeDetectorLevel()**************"<<endl;
     
@@ -308,31 +302,16 @@ int StMyAnalysisMaker::makeDetectorLevel(){
 
     runOverTowers(); //Runs over all towers
 
+    if(doEmbedding && selectHTEventsOnly){
+       if(maxTowerEt < highTowerThreshold){
+           if(doEventDebug)cout<<"No high tower in event with max tower et: "<<maxTowerEt<<endl;
+           return kStOK;
+       }fillHist1D("hEventStats", 3);
+    }
+
     if(doEventDebug)cout<<"Max track pt: "<<maxTrackPt<<" Max tower Et: "<<maxTowerEt<<endl;
 
-    histos2D["h2MaxTrkPtvTowEt"]->Fill(maxTrackPt, maxTowerEt, Wt);
-
-    if(excludeNoJetEvents){
-        if((maxTrackPt < jetConstituentMinPt) && (maxTowerEt < jetConstituentMinPt)){
-            if(doEventDebug)cout<<"Rejected low energy event: "<<maxTrackPt<<" "<<maxTowerEt<<endl;
-            return kStOK;
-        }histos1D["hEventStats"]->Fill(6);
-    }
-
-    if(doJetAnalysis){
-        if(doJetDebug)cout<<"Running over jets..."<<endl;
-        int returnCode = runOverJets();
-        if(returnCode >= 0) return returnCode;
-        histos1D["hEventStats"]->Fill(8);
-    }
-
-    if(doEmbedding && selectHTEventsOnly){
-        if(maxTowerEt < highTowerThreshold){
-            if(doEventDebug)cout<<"No high tower in event with max tower et: "<<maxTowerEt<<endl;
-            return kStOK;
-        }histos1D["hEventStats"]->Fill(3);
-    }
-
+    fillHist2D("h2MaxTrkPtvTowEt", maxTrackPt, maxTowerEt, Wt);
 
     return -1;
 }
@@ -342,44 +321,12 @@ int StMyAnalysisMaker::makeGenLevel(){
 
     runOverGenTracks(); //Runs over all gen tracks
 
-    if(excludeNoJetEvents){
-        if(maxGenTrackPt < jetConstituentMinPt){
-            if(doEventDebug)cout<<"Rejected low energy event: "<<maxGenTrackPt<<endl;
-            return kStOK;
-        }histos1D["hEventStats"]->Fill(6);
-    }
-
-    int returnCode = -1;
-
-    if(doJetAnalysis){
-        if(doJetDebug)cout<<"Running over gen jets..."<<endl;
-        returnCode = runOverGenJets();
-        if(returnCode >= 0) return returnCode;
-    }histos1D["hEventStats"]->Fill(8);
-
     if(doPythiaEvent){
-        StPythiaEvent *pyEvt = tsArrays->addPythiaEvent();
-        *pyEvt = *pythiaEvent;
+        StPythiaEvent *pyEvt = TStarArrays::addPythiaEvent();
+        pyEvt->set(*pythiaEvent);
     }
 
     return -1;
-}
-
-void StMyAnalysisMaker::bookTree(){
-    if(outputFileName == ""){
-        cout<<"Trees are not being written to any file!"<<endl;
-        return;
-    }else{
-        treeOut = new TFile(outputFileName.c_str(), "UPDATE");
-        treeOut->cd();
-        //treeOut->mkdir(GetName());
-        //writedir = (TDirectory*)treeOut->Get(GetName());
-        cout<<"Writing tree to: "<<outputFileName<<endl;
-        tree = new TTree("Events", "Tree with event Info");
-        tree->SetDirectory(gDirectory);
-        tsArrays->setBranch(tree); 
-        cout<<"Events tree directory set"<<endl;
-    }
 }
 
 int StMyAnalysisMaker::runStRefMultCorr(){
@@ -414,7 +361,7 @@ int StMyAnalysisMaker::runStRefMultCorr(){
     if(centbin16 < 0){
         if(doEventDebug)cout<<"Bad centrality bin: "<<centbin16<<endl;
         return kStOK;
-    }histos1D["hEventStats"]->Fill(4);
+    }fillHist1D("hEventStats", 4);
 
     ref16 = 15-centbin16; 
     centscaled = 5.0*ref16 + 2.5;
@@ -422,21 +369,21 @@ int StMyAnalysisMaker::runStRefMultCorr(){
 
     tsEvent->setCentrality(centscaled);
     tsEvent->setCorrectedRefmult(grefmultCorr->getRefMultCorr(tsEvent->gRefMult(), tsEvent->Vz(), tsEvent->ZDC_Coincidence(), 2));
-    Wt = grefmultCorr->getWeight();
+    Wt = Wt0*grefmultCorr->getWeight();
     tsEvent->setWeight(Wt);
 
     if(doEventDebug)cout<<"Got corrected refmult: "<<tsEvent->refMultCorr()<<" Event weight: "<<Wt<<endl;
     
-    histos1D["hgRefMult"]->Fill(picoEvent->grefMult(), Wt);
-    histos1D["hRefMult"]->Fill(tsEvent->refMultCorr(), Wt);
-    histos1D["hCentrality"]->Fill(centscaled, Wt);
-    histos2D["h2CentvWeight"]->Fill(centscaled, Wt);
+    fillHist1D("hgRefMult", picoEvent->grefMult(), Wt);
+    fillHist1D("hRefMult", tsEvent->refMultCorr(), Wt);
+    fillHist1D("hCentrality", centscaled, Wt);
+    fillHist2D("h2CentvWeight", centscaled, Wt);
 
     if(doCentSelection){
         if((centscaled < centralityMin) || (centscaled > centralityMax)){
             if(doEventDebug)cout<<"Centrality selection failed: "<<centscaled<<endl;
             return kStOK;
-        }histos1D["hEventStats"]->Fill(5); 
+        }fillHist1D("hEventStats", 5); 
     }
     //grefmultCorrUtil->init(runID);
     //grefmultCorrUtil->initEvent(tsEvent->gRefMult(), tsEvent->Vz(), tsEvent->ZDC_Coincidence()); 
@@ -455,35 +402,35 @@ int StMyAnalysisMaker::setUpTriggers(){
         cout<<"***************************"<<endl;
     }
     tsEvent->setTriggers(eventTriggers);
-    histos1D["hTriggerStats"]->Fill(0); 
+    fillHist1D("hTriggerStats", 0); 
     bool hasTrigger = false;
     if(tsEvent->isMBmon()){
-        histos1D["hTriggerStats"]->Fill(1);
+        fillHist1D("hTriggerStats", 1);
         hasTrigger = true;
         if(doTriggerDebug)cout<<"MBmon event!"<<endl;
     }
     if(tsEvent->isMB5()){
-        histos1D["hTriggerStats"]->Fill(2);
+        fillHist1D("hTriggerStats", 2);
         hasTrigger = true;
         if(doTriggerDebug)cout<<"MB5 event!"<<endl;
     }
     if(tsEvent->isMB30()){
-        histos1D["hTriggerStats"]->Fill(3);
+        fillHist1D("hTriggerStats", 3);
         hasTrigger = true;
         if(doTriggerDebug)cout<<"MB30 event!"<<endl;
     } 
     if(tsEvent->isHT1()){
-        histos1D["hTriggerStats"]->Fill(4);
+        fillHist1D("hTriggerStats", 4);
         hasTrigger = true;
         if(doTriggerDebug)cout<<"HT1 event!"<<endl;
     }  
     if(tsEvent->isHT2()){
-        histos1D["hTriggerStats"]->Fill(5);
+        fillHist1D("hTriggerStats", 5);
         hasTrigger = true;
         if(doTriggerDebug)cout<<"HT2 event!"<<endl;
     }  
     if(tsEvent->isHT3()){
-        histos1D["hTriggerStats"]->Fill(6);
+        fillHist1D("hTriggerStats", 6);
         hasTrigger = true;
         if(doTriggerDebug)cout<<"HT3 event!"<<endl;
     }
@@ -496,14 +443,14 @@ int StMyAnalysisMaker::setUpTriggers(){
         if(!tsEvent->isHT()){
             if(doEventDebug || doTriggerDebug)cout<<"Not a HT event!"<<endl;
             return kStOK;
-        }histos1D["hEventStats"]->Fill(3);
+        }fillHist1D("hEventStats", 3);
     }
 
     if(!doppAnalysis){
-        if(tsEvent->isMB5()) histos1D["hCentralityMB05"]->Fill(centscaled, Wt);
-        if(tsEvent->isMB30())histos1D["hCentralityMB30"]->Fill(centscaled, Wt);
-        if(tsEvent->isHT2()) histos1D["hCentralityHT2" ]->Fill(centscaled, Wt);
-        if(tsEvent->isHT3()) histos1D["hCentralityHT3" ]->Fill(centscaled, Wt);
+        if(tsEvent->isMB5()) fillHist1D("hCentralityMB05", centscaled, Wt);
+        if(tsEvent->isMB30())fillHist1D("hCentralityMB30", centscaled, Wt);
+        if(tsEvent->isHT2()) fillHist1D("hCentralityHT2" , centscaled, Wt);
+        if(tsEvent->isHT3()) fillHist1D("hCentralityHT3" , centscaled, Wt);
     }
 
     return -1;
@@ -522,11 +469,11 @@ void StMyAnalysisMaker::runOverTracks(){
         maxTrackPt = 0;
     }
 
-    if(tsArrays->numberOfTracks() > 0){
+    if(TStarArrays::numberOfTracks() > 0){
         cout<<"Track array not cleared from previous event!"<<endl;
     }
 
-    unsigned int nTracks = picoDst->numberOfTracks();
+    unsigned int nTracks = StPicoDst::numberOfTracks();
 
     if(doTrackDebug){
         cout<<"*************** Tracks Summary: ***************"<<endl;
@@ -534,7 +481,7 @@ void StMyAnalysisMaker::runOverTracks(){
     }
 
     for(unsigned int itrk = 0; itrk < nTracks; itrk++){ //begin Track Loop...
-        StPicoTrack *trk = static_cast<StPicoTrack*>(picoDst->track(itrk));
+        StPicoTrack *trk = static_cast<StPicoTrack*>(StPicoDst::track(itrk));
 
         if(!isTrackGood(trk)) continue;
 
@@ -550,12 +497,12 @@ void StMyAnalysisMaker::runOverTracks(){
             towerNTracksMatched[towerMatched]++;   
             towerHadCorrSumTrE[towerMatched] += E;
             towerHadCorrMaxTrE[towerMatched] = max(E, towerHadCorrMaxTrE[towerMatched]);
-        }else{histos1D["hTrackStats"]->Fill(7);}
+        }else{fillHist1D("hTrackStats", 7);}
 
         maxTrackPt = max(trkPt, maxTrackPt);
 
-        TStarTrack* tsTrk = tsArrays->addTrack();
-        tsTrk->setIndex(tsArrays->numberOfTracks()-1);
+        TStarTrack* tsTrk = TStarArrays::addTrack();
+        tsTrk->setIndex(TStarArrays::numberOfTracks()-1);
         tsTrk->setCharge(trkChrg);
         tsTrk->setVector(trkMom, sqrt(trkMom.Mag2() + pi0mass*pi0mass));
        // double trackingEff = getTrackingEfficiency(trkPt, trkEta, ref16, tsEvent->ZDC_Coincidence(), efficiencyFile);
@@ -577,15 +524,15 @@ void StMyAnalysisMaker::runOverTracks(){
                 cout<<"TStarTrack: "<<tsTrk->index()<<" pt: "<<tsTrk->pt()<<" eta: "<<tsTrk->eta()<<" phi: "<<tsTrk->phi()<<" charge: "<<tsTrk->charge()<<endl;
             }
         }
-        histos1D["hTrackPt"]->Fill(trkPt, Wt);
-        histos1D["hTrackPtxCh"]->Fill(trkPt*trkChrg, Wt);
-        histos1D["hTrackEta"]->Fill(trkEta, Wt); 
-        histos1D["hTrackPhi"]->Fill(tsTrk->phi(), Wt);
+        fillHist1D("hTrackPt", trkPt, Wt);
+        fillHist1D("hTrackPtxCh", trkPt*trkChrg, Wt);
+        fillHist1D("hTrackEta", trkEta, Wt); 
+        fillHist1D("hTrackPhi", tsTrk->phi(), Wt);
 
-       // histos2D["h2TrackPtvEff"]->Fill(trkPt, trackingEff, Wt);
-        histos2D["h2TrackEtavPhi"]->Fill(tsTrk->phi(), trkEta, trkPt*Wt); 
+       // fillHist2D("h2TrackPtvEff", trkPt, trackingEff, Wt);
+        fillHist2D("h2TrackEtavPhi", tsTrk->phi(), trkEta, trkPt*Wt); 
     } //end Track Loop...
-    histos2D["h2CentvMaxTrackPt"]->Fill(centscaled, maxTrackPt, Wt);
+    fillHist2D("h2CentvMaxTrackPt", centscaled, maxTrackPt, Wt);
     if(doTrackDebug)cout<<"Final Max track pt: "<<maxTrackPt<<endl;
     tsEvent->setMaxTrackPt(maxTrackPt);
     if(doTrackDebug)cout<<"********** END StMyAnalysisMaker::runOverTracks() done************"<<endl;
@@ -597,16 +544,16 @@ void StMyAnalysisMaker::runOverTowers(){
         if(doTowerDebug)cout<<"Max tower Et was at "<<maxTowerEt<<", now set to 0..."<<endl;
         maxTowerEt = 0;
     }
-    if(tsArrays->numberOfTowers() > 0){
+    if(TStarArrays::numberOfTowers() > 0){
         cout<<"Tower array not cleared from previous event!"<<endl;
     }
-    unsigned int nTowers = picoDst->numberOfBTowHits();
+    unsigned int nTowers = StPicoDst::numberOfBTowHits();
     if(doTowerDebug){
         cout<<"*************** Towers Summary: ***************"<<endl;
         cout<<"Number of towers: "<<nTowers<<endl;
     }
     for(unsigned int itow = 0; itow < nTowers; itow++){
-        StPicoBTowHit *tower = static_cast<StPicoBTowHit*>(picoDst->btowHit(itow));
+        StPicoBTowHit *tower = static_cast<StPicoBTowHit*>(StPicoDst::btowHit(itow));
 
         if(!isTowerGood(itow, tower)) continue;
         double towERaw = tower->energy();
@@ -621,7 +568,7 @@ void StMyAnalysisMaker::runOverTowers(){
             if(doTowerDebug)
                 cout<<"Tower eta: "<<towEta<<" outside of range: "<<towerEtaMin<<" to "<<towerEtaMax<<endl;
             continue;
-        }histos1D["hTowerStats"]->Fill(4);
+        }fillHist1D("hTowerStats", 4);
         //Start hardonic correction of tower...
         double towE = towERaw;
         if(towerNTracksMatched[itow] != 0){
@@ -632,7 +579,7 @@ void StMyAnalysisMaker::runOverTowers(){
             if(hadronicCorrType == HadronicCorrectionType::kFull){towE -= towerHadCorrSumTrE[itow];}
             else if(hadronicCorrType == HadronicCorrectionType::kHighestMatchedTrackE){towE -= towerHadCorrMaxTrE[itow];}
             if(doTowerDebug)cout<<"Tower energy after hadronic correction: "<<towE<<endl;
-        }else{histos1D["hTowerStats"]->Fill(7);
+        }else{fillHist1D("hTowerStats", 7);
             if(doTowerDebug)cout<<"Tower: "<<itow<<" has no matched tracks"<<endl;
         }
         double towEt = towE/cosh(towPos.Eta());
@@ -641,14 +588,14 @@ void StMyAnalysisMaker::runOverTowers(){
             continue;
         }else if(doTowerDebug){
             if(towEt > maxTowerEt)cout<<"Max tower Et changed from: "<<maxTowerEt<<" to "<<towEt<<endl;
-        }histos1D["hTowerStats"]->Fill(5);
+        }fillHist1D("hTowerStats", 5);
 
         maxTowerEt = max(towEt, maxTowerEt);
 
-        histos1D["hTowerStats"]->Fill(6);
+        fillHist1D("hTowerStats", 6);
 
-        TStarTower* tsTow = tsArrays->addTower();
-        tsTow->setIndex(tsArrays->numberOfTowers()-1);
+        TStarTower* tsTow = TStarArrays::addTower();
+        tsTow->setIndex(TStarArrays::numberOfTowers()-1);
         tsTow->setADC(tower->adc());
         tsTow->setRawE(towERaw);
         tsTow->setTowerVector(towPos, towE, pi0mass);
@@ -666,15 +613,15 @@ void StMyAnalysisMaker::runOverTowers(){
                 cout<<"TStarTower:"<<tsTow->index()<<" Pt: "<<tsTow->pt()<<" eta: "<<tsTow->eta()<<" phi: "<<tsTow->phi()<<endl;
             }
         }
-        histos1D["hTowerERaw"]->Fill(towERaw, Wt);
-        histos1D["hTowerE"]->Fill(towE, Wt);
-        histos1D["hTowerEt"]->Fill(towEt, Wt);
-        histos1D["hTowerEta"]->Fill(towEta, Wt);
-        histos1D["hTowerPhi"]->Fill(tsTow->phi(), Wt);
-        histos2D["hTowerdESumvMax"]->Fill(towerHadCorrSumTrE[itow], towerHadCorrMaxTrE[itow], Wt);
-        histos2D["h2TowerEtavPhi"]->Fill(tsTow->phi(), towEta, towEt*Wt);
+        fillHist1D("hTowerERaw", towERaw, Wt);
+        fillHist1D("hTowerE", towE, Wt);
+        fillHist1D("hTowerEt", towEt, Wt);
+        fillHist1D("hTowerEta", towEta, Wt);
+        fillHist1D("hTowerPhi", tsTow->phi(), Wt);
+        fillHist2D("h2TowerdECorr", towerHadCorrSumTrE[itow], towerHadCorrMaxTrE[itow], Wt);
+        fillHist2D("h2TowerEtavPhi", tsTow->phi(), towEta, towEt*Wt);
     }//end tower loop...
-    histos2D["h2CentvMaxTowerEt"]->Fill(centscaled, maxTowerEt, Wt);
+    fillHist2D("h2CentvMaxTowerEt", centscaled, maxTowerEt, Wt);
     if(doTowerDebug)cout<<"Final Max tower Et: "<<maxTowerEt<<endl;
     tsEvent->setMaxTowerEt(maxTowerEt);
     if(doTowerDebug)cout<<"********** END StMyAnalysisMaker::runOverTowers() done************"<<endl;
@@ -687,17 +634,17 @@ void StMyAnalysisMaker::runOverGenTracks(){
         if(doGenDebug)cout<<"Max gen track pt was at "<<maxGenTrackPt<<", now set to 0 ..."<<endl;
         maxGenTrackPt = 0;
     }
-    if(tsArrays->numberOfGenTracks() > 0){
+    if(TStarArrays::numberOfGenTracks() > 0){
         cout<<"Gen Track array not cleared from previous event!"<<endl;
     }
-    unsigned int nGenTracks = picoDst->numberOfMcTracks();
+    unsigned int nGenTracks = StPicoDst::numberOfMcTracks();
     if(doGenDebug){
         cout<<"*************** Gen level Summary: ***************"<<endl;
         cout<<"Number of gen tracks: "<<nGenTracks<<endl;
     }
 
     for(unsigned int igen = 0; igen < nGenTracks; igen++){
-        StPicoMcTrack *genTrk = static_cast<StPicoMcTrack*>(picoDst->mcTrack(igen));
+        StPicoMcTrack *genTrk = static_cast<StPicoMcTrack*>(StPicoDst::mcTrack(igen));
 
         if(!isGenTrackGood(genTrk)) continue;
 
@@ -710,16 +657,16 @@ void StMyAnalysisMaker::runOverGenTracks(){
 
         maxGenTrackPt = max(maxGenTrackPt, genPt);  
 
-        TStarGenTrack *tsGenTrk = tsArrays->addGenTrack();
+        TStarGenTrack *tsGenTrk = TStarArrays::addGenTrack();
         tsGenTrk->setVector(gen4Mom);
-        tsGenTrk->setIndex(tsArrays->numberOfGenTracks()-1);
+        tsGenTrk->setIndex(TStarArrays::numberOfGenTracks()-1);
         tsGenTrk->setCharge(genCharge);
         tsGenTrk->setGeantId(genTrk->geantId());
         tsGenTrk->setPdgId(genTrk->pdgId());
         tsGenTrk->setIdVtxStart(genTrk->idVtxStart());
         tsGenTrk->setIdVtxEnd(genTrk->idVtxStop());
 
-        genTrackIndexMap[igen] = tsArrays->numberOfGenTracks() - 1;
+        genTrackIndexMap[igen] = TStarArrays::numberOfGenTracks() - 1;
 
         if(doGenDebug){
             cout<<"Made StPicoMcTrack into TStarGenTrack! comparing"<<endl;
@@ -736,95 +683,17 @@ void StMyAnalysisMaker::runOverGenTracks(){
             }
         }
 
-        histos1D["hGenTrackPt"]->Fill(genPt, Wt);
-        histos1D["hGenTrackEta"]->Fill(genEta, Wt);
-        histos1D["hGenTrackPhi"]->Fill(tsGenTrk->phi(), Wt);
-        histos2D["h2GenTrackEtavPhi"]->Fill(tsGenTrk->phi(), genEta, genPt*Wt);
+        fillHist1D("hGenTrackPt", genPt, Wt);
+        fillHist1D("hGenTrackEta", genEta, Wt);
+        fillHist1D("hGenTrackPhi", tsGenTrk->phi(), Wt);
+        fillHist2D("h2GenTrackEtavPhi", tsGenTrk->phi(), genEta, genPt*Wt);
 
     }//end gen track loop...
 
-    histos2D["h2CentvMaxGenTrackPt"]->Fill(centscaled, maxGenTrackPt, Wt);
+    fillHist2D("h2CentvMaxGenTrackPt", centscaled, maxGenTrackPt, Wt);
     if(doGenDebug)cout<<"Final Max gen track Pt: "<<maxGenTrackPt<<endl;
     tsEvent->setMaxGenTrackPt(maxGenTrackPt);
     if(doGenDebug)cout<<"********** END StMyAnalysisMaker::runOverGenTracks() done************"<<endl;
-}
-
-int StMyAnalysisMaker::runOverJets(){
-    if(doJetDebug)cout<<"**********StMyAnalysisMaker::runOverJets()************"<<endl;
-
-    if(tsArrays->numberOfJets() > 0){
-        cout<<"Jet array not cleared from previous event!"<<endl;
-    }
-
-    unsigned int nJets = jetMaker->clusterJets();
-    if(doJetDebug){
-        cout<<"*************** Jet Summary: ***************"<<endl;
-        cout<<"Number of jets: "<<nJets<<endl;
-    }
-    if(nJets == 0) return kStOK;
-
-    for(unsigned int ijet = 0; ijet < nJets; ijet++){
-        TStarJet *tsJet = tsArrays->addJet();
-        tsJet->setJet(jetMaker->getJet(ijet));
-        
-        if(doJetDebug){
-            cout<<"Jet # "<<ijet<<" pt: "<<tsJet->pt()<<" eta: "<<tsJet->eta()<<" phi: "<<tsJet->phi()<<endl;
-            cout<<"Jet has "<<tsJet->numberOfConstituents()<<" constituents"<<endl;
-        }
-        unsigned int icon = 0;
-        for(auto& con : tsJet->constituentIndices()){
-            unsigned int index = con.first;
-            short charge = con.second;
-            //cout<<"Constituent # "<<icon<<" index: "<<index<<" charge: "<<charge<<endl;
-            if(charge == 0){
-                TStarTower *tow = tsArrays->getTower(index);
-                tow->setJetIndex(ijet);
-                if(doJetDebug){cout<<"___Constituent "<<icon++<<" is tower # ";
-                            cout<<index<<" Et: "<<tow->et();
-                            cout<<" eta: "<<tow->eta();
-                            cout<<" phi: "<<tow->phi()<<endl;}
-            }else{
-                TStarTrack *trk = tsArrays->getTrack(index);
-                trk->setJetIndex(ijet);
-                if(doJetDebug)cout<<"___Constituent "<<icon++<<" is track # "<<index<<" pt: "<<trk->pt()<<" eta: "<<trk->eta()<<" phi: "<<trk->phi()<<endl;
-            }
-        }
-    }
-    
-    if(doJetDebug){cout<<nJets<<" jets clustered, "<<tsArrays->numberOfJets()<<" jets stored."<<endl;
-        cout<<"********** END StMyAnalysisMaker::runOverJets() done************"<<endl;}
-    return -1;
-}
-
-int StMyAnalysisMaker::runOverGenJets(){
-    if(doJetDebug)cout<<"**********StMyAnalysisMaker::runOverGenJets()************"<<endl;
-    unsigned int nGenJets = genJetMaker->clusterJets();
-    if(nGenJets == 0) return kStOK;
-
-    if(doJetDebug){
-        cout<<"*************** Gen Jet Summary: ***************"<<endl;
-        cout<<"Number of gen jets: "<<nGenJets<<endl;
-    }
-
-    for(unsigned int ijet = 0; ijet < nGenJets; ijet++){
-        TStarJet *tsGenJet = tsArrays->addGenJet();
-        tsGenJet->setJet(genJetMaker->getJet(ijet));
-
-        if(doJetDebug){
-            cout<<"Gen Jet # "<<ijet<<" pt: "<<tsGenJet->pt()<<" eta: "<<tsGenJet->eta()<<" phi: "<<tsGenJet->phi()<<endl;
-            cout<<"Gen Jet has "<<tsGenJet->numberOfConstituents()<<" constituents"<<endl;
-        }
-        unsigned int icon = 0;
-        for(auto& con : tsGenJet->constituentIndices()){
-            unsigned int index = con.first;
-            TStarGenTrack *trk = tsArrays->getGenTrack(index);
-            trk->setJetIndex(ijet);
-            if(doJetDebug)cout<<"___Constituent "<<icon++<<" is gen track # "<<index<<" pt: "<<trk->pt()<<" eta: "<<trk->eta()<<" phi: "<<trk->phi()<<endl;
-        }
-    }
-    if(doJetDebug){cout<<nGenJets<<" gen jets clustered, "<<tsArrays->numberOfGenJets()<<" gen jets stored."<<endl;
-        cout<<"********** END StMyAnalysisMaker::runOverGenJets() done************"<<endl;}
-    return -1;
 }
 
 bool StMyAnalysisMaker::isTowerGood(unsigned int itow, StPicoBTowHit* tower){
@@ -833,7 +702,7 @@ bool StMyAnalysisMaker::isTowerGood(unsigned int itow, StPicoBTowHit* tower){
     if(!tower){
         //if(doDebug)cout<<"Tower pointer is null!"<<endl;
         return false;
-    }histos1D["hTowerStats"]->Fill(0);
+    }fillHist1D("hTowerStats", 0);
 
     if(tower->isBad()){
         //if(doDebug)cout<<"Tower is bad ! 1"<<endl;
@@ -842,18 +711,18 @@ bool StMyAnalysisMaker::isTowerGood(unsigned int itow, StPicoBTowHit* tower){
     if(badTowers.count(itow+1)>0){
         //if(doDebug)cout<<"Tower is bad ! 2"<<endl;
         return false;
-    }histos1D["hTowerStats"]->Fill(1);
+    }fillHist1D("hTowerStats", 1);
 
     if(deadTowers.count(itow+1)>0){
         //if(doDebug)cout<<"Tower is dead!"<<endl;
         return false;
-    }histos1D["hTowerStats"]->Fill(2);
+    }fillHist1D("hTowerStats", 2);
 
     if(tower->energy() < towerEnergyMin){
         if(doTowerDebug)
             cout<<"Tower failed energy cut: "<<tower->energy()<<endl;
         return false;
-    }histos1D["hTowerStats"]->Fill(3);
+    }fillHist1D("hTowerStats", 3);
 
     if(doTowerDebug)cout<<"********** END StMyAnalysisMaker::isTowerGood() done************"<<endl;
 
@@ -875,26 +744,26 @@ bool StMyAnalysisMaker::isTrackGood(StPicoTrack* trk){
     if(!(trk->isPrimary())){
         //if(doDebug)cout<<"Track is not primary!"<<endl;
         return false;
-    }histos1D["hTrackStats"]->Fill(0);
+    }fillHist1D("hTrackStats", 0);
 //Track quality cuts...
 //DCA:
     if(trk->gDCA(pVtx).Mag() > trackDCAMax){
         if(doTrackDebug)
             cout<<"Track failed DCA cut: "<<trk->gDCA(pVtx).Mag()<<endl;
         return false;
-    }histos1D["hTrackStats"]->Fill(1);
+    }fillHist1D("hTrackStats", 1);
 //nHitsFit:
     if(trk->nHitsFit() < trackNHitsFitMin){
         if(doTrackDebug)
             cout<<"Track failed nHitsFit cut: "<<trk->nHitsFit()<<endl;
         return false;
-    }histos1D["hTrackStats"]->Fill(2); 
+    }fillHist1D("hTrackStats", 2); 
 //nHitsRatio:
     if((trk->nHitsFit()/(double)trk->nHitsMax()) < trackNHitsRatioMin){
         if(doTrackDebug)
             cout<<"Track failed nHitsFit/nHitsMax cut: "<<trk->nHitsFit()/(double)trk->nHitsMax()<<endl;
         return false;
-    }histos1D["hTrackStats"]->Fill(3); 
+    }fillHist1D("hTrackStats", 3); 
 
     TVector3 trkMom = trk->pMom();
     double trkPt = trkMom.Pt();
@@ -903,16 +772,16 @@ bool StMyAnalysisMaker::isTrackGood(StPicoTrack* trk){
         if(doTrackDebug)
             cout<<"Track failed pt cut: "<<trkPt<<endl;
         return false;
-    }histos1D["hTrackStats"]->Fill(4); 
+    }fillHist1D("hTrackStats", 4); 
 //Track Eta:
     double trkEta = trkMom.Eta();
     if((trkEta < trackEtaMin) || (trkEta > trackEtaMax)){
         if(doTrackDebug)
             cout<<"Track failed eta cut: "<<trkEta<<endl;
         return false;
-    }histos1D["hTrackStats"]->Fill(5); 
+    }fillHist1D("hTrackStats", 5); 
 
-    histos1D["hTrackStats"]->Fill(6); 
+    fillHist1D("hTrackStats", 6); 
 
     if(doTrackDebug){
         cout<<"********** END StMyAnalysisMaker::isTrackGood() done************"<<endl;
@@ -935,14 +804,14 @@ bool StMyAnalysisMaker::isGenTrackGood(StPicoMcTrack* genTrk){
     if(!genTrk){
         if(doGenDebug)cout<<"StPicoMcTrack pointer is null!"<<endl;
         return false;
-    }histos1D["hGenTrackStats"]->Fill(0);
+    }fillHist1D("hGenTrackStats", 0);
 
     unsigned int idVtxStop = genTrk->idVtxStop();
     if(idVtxStop > 0){
         if(doGenDebug)
             cout<<"Gen Track is not final state!"<<endl;
         return false;
-    }histos1D["hGenTrackStats"]->Fill(1);
+    }fillHist1D("hGenTrackStats", 1);
 
     TVector3 genMom = genTrk->p();
     double genPt = genMom.Pt();
@@ -953,15 +822,15 @@ bool StMyAnalysisMaker::isGenTrackGood(StPicoMcTrack* genTrk){
         if(doGenDebug)
             cout<<"GenTrack failed pt cut: "<<genPt<<endl;
         return false;
-    }histos1D["hGenTrackStats"]->Fill(2);
+    }fillHist1D("hGenTrackStats", 2);
 //Track Eta:
     if((genEta < trackEtaMin) || (genEta > trackEtaMax)){
         if(doGenDebug)
             cout<<"GenTrack failed eta cut: "<<genEta<<endl;
         return false;
-    }histos1D["hGenTrackStats"]->Fill(3);
+    }fillHist1D("hGenTrackStats", 3);
 
-    histos1D["hGenTrackStats"]->Fill(4);
+    fillHist1D("hGenTrackStats", 4);
     if(doGenDebug){
         cout<<"********** END StMyAnalysisMaker::isGenTrackGood() done************"<<endl;
         cout<<"Gen track accepted: "<<" Pt: "<<genPt<<" eta: "<<genEta<<" phi: "<<genPhi<<endl;
@@ -971,126 +840,39 @@ bool StMyAnalysisMaker::isGenTrackGood(StPicoMcTrack* genTrk){
     return true;
 }
 
-void StMyAnalysisMaker::declareHistograms(){
-    if(doDebug)cout<<"**********StMyAnalysisMaker::declareHistograms()************"<<endl;
-
-    histos1D["hEventStats"]     = new TH1F("hEventStats", "Event Statistics", 11, -0.5, 10.5);
-    histos1D["hTriggerStats"]     = new TH1F("hTriggerStats", "Trigger Statistics", 10, -0.5, 9.5);
-    histos1D["hRefMult"] = new TH1F("hRefMult", "Reference Multiplicity", 701, -0.5, 700.5);
-    histos1D["hgRefMult"] = new TH1F("hgRefMult", "Global Reference Multiplicity", 701, -0.5, 700.5);
-    histos1D["hCentrality"]     = new TH1F("hCentrality", "Event Centrality", 16, 0, 80);
-    histos1D["hCentralityMB05"] = new TH1F("hCentralityMB05", "Event Centrality for MB5 events", 16, 0, 80); 
-    histos1D["hCentralityMB30"] = new TH1F("hCentralityMB30", "Event Centrality for MB30 events", 16, 0, 80); 
-    histos1D["hCentralityHT2"]  = new TH1F("hCentralityHT2", "Event Centrality for HT2 events", 16, 0, 80); 
-    histos1D["hCentralityHT3"]  = new TH1F("hCentralityHT3", "Event Centrality for HT3 events", 16, 0, 80);
-
-    histos2D["h2CentvWeight"] = new TH2F("h2CentvWeight", "Event Centrality vs RefMultCorr Weight", 16, 0, 80, 25, 0, 2.5);
-    histos2D["h2CentvMaxTrackPt"] = new TH2F("h2CentvMaxTrackPt", "Event Centrality vs max(p_{T, track})", 16, 0, 80, 60, 0, 30);
-    histos2D["h2CentvMaxGenTrackPt"] = new TH2F("h2CentvMaxGenTrackPt", "Event Centrality vs max(p_{T, gen track})", 16, 0, 80, 60, 0, 30);
-    histos2D["h2CentvMaxTowerEt"] = new TH2F("h2CentvMaxTowerEt", "Event Centrality vs max(E_{T, tower})", 16, 0, 80, 80, 0, 40);
-    histos2D["h2MaxTrkPtvTowEt"] = new TH2F("h2MaxTrkPtvTowEt", "Event max(p_{T, track}) vs max(E_{T, tower})", 60, 0, 30, 80, 0, 40);
-
-    histos1D["hTrackStats"] = new TH1F("hTrackStats", "Track Statistics", 10, -0.5, 9.5);
-    histos1D["hTrackPt"]    = new TH1F("hTrackPt", "p_{T, track}", 60, 0.0, 30);
-    histos1D["hTrackPtxCh"]    = new TH1F("hTrackPtxCh", "p_{T, track}#times Charge", 120, -30.0, 30.0);
-    histos1D["hTrackEta"]   = new TH1F("hTrackEta", "#eta_{track}", 40, -1.0, 1.0);
-    histos1D["hTrackPhi"]   = new TH1F("hTrackPhi", "#phi_{track}", 126, 0.0, 2*TMath::Pi());
-
-    histos2D["h2TrackPtvEff"] = new TH2F("h2TrackPtvEff", "p_{T, track} vs #epsilon_{track}", 60, 0.0, 30, 20, 0.0, 1.0);
-    histos2D["h2TrackEtavPhi"] = new TH2F("h2TrackEtavPhi", "#phi_{track} vs #eta_{track}", 126, 0.0, 2*TMath::Pi(), 40, -1.0, 1.0);
-
-    histos1D["hGenTrackStats"] = new TH1F("hGenTrackStats", "GenTrack Statistics", 10, -0.5, 9.5);
-    histos1D["hGenTrackPt"]    = new TH1F("hGenTrackPt", "p_{T, track}", 60, 0.0, 30);
-    histos1D["hGenTrackEta"]   = new TH1F("hGenTrackEta", "#eta_{track}", 40, -1.0, 1.0);
-    histos1D["hGenTrackPhi"]   = new TH1F("hGenTrackPhi", "#phi_{track}", 126, 0.0, 2*TMath::Pi());
-
-    histos2D["h2GenTrackEtavPhi"] = new TH2F("h2GenTrackEtavPhi", "#phi_{track} vs #eta_{track}", 126, 0.0, 2*TMath::Pi(), 40, -1.0, 1.0);
-
-    histos1D["hTowerStats"]  = new TH1F("hTowerStats", "Tower Statistics", 10, -0.5, 9.5); 
-    histos1D["hTowerERaw"]   = new TH1F("hTowerERaw", "E_{tower}, Uncorrected", 200, 0, 40);
-    histos1D["hTowerE"]      = new TH1F("hTowerE", "E_{tower}, Corrected", 200, 0, 40);
-    histos1D["hTowerEt"]     = new TH1F("hTowerEt", "E_{T, tower}", 200, 0, 40);
-    histos1D["hTowerEta"]    = new TH1F("hTowerEta", "#eta_{tower}", 40, -1.0, 1.0);
-    histos1D["hTowerPhi"]    = new TH1F("hTowerPhi", "#phi_{tower}", 126, 0.0, 2*TMath::Pi());
-
-    histos2D["hTowerdESumvMax"] = new TH2F("hTowerdECorr", "#Delta E_{tower} Correction", 100, 0, 20, 100, 0, 20);
-    histos2D["h2TowerEtavPhi"] = new TH2F("hTowerEtavPhi", "#phi_{tower} vs #eta_{tower}", 126, 0.0, 2*TMath::Pi(), 40, -1.0, 1.0);
-
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(1, "ALL");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(2, "RUN GOOD");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(3, "VZ PASS");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(4, "HAS HT TRIGGER");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(5, "CENTRALITY GOOD");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(6, "CENTRALITY PASS");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(7, "HAS JET CONSTIT");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(8, "PT MAX PASS");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(9, "HAS JET");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(10,"HAS GEN JET");
-    histos1D["hEventStats"]->GetXaxis()->SetBinLabel(11,"GOOD");
-
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(1, "ALL");
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(2, "MBmon");
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(3, "MB5");
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(4, "MB30");
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(5, "HT1xMB30");
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(6, "HT2xMB30");
-    histos1D["hTriggerStats"]->GetXaxis()->SetBinLabel(7, "HT3");
-
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(1, "ALL");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(2, "DCA PASS");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(3, "nHitsFit PASS");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(4, "nHitsRatio PASS");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(5, "PT PASS");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(6, "ETA PASS");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(7, "GOOD");
-    histos1D["hTrackStats"]->GetXaxis()->SetBinLabel(8, "TOWER MATCHED");
-
-    histos1D["hGenTrackStats"]->GetXaxis()->SetBinLabel(1, "ALL");
-    histos1D["hGenTrackStats"]->GetXaxis()->SetBinLabel(2, "FINAL STATE");
-    histos1D["hGenTrackStats"]->GetXaxis()->SetBinLabel(3, "PT PASS");
-    histos1D["hGenTrackStats"]->GetXaxis()->SetBinLabel(4, "ETA PASS");
-    histos1D["hGenTrackStats"]->GetXaxis()->SetBinLabel(5, "GOOD");
- 
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(1, "ALL");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(2, "GOOD");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(3, "ALIVE");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(4, "RawE PASS");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(5, "ETA PASS");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(6, "Et PASS");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(7, "ALL GOOD");
-    histos1D["hTowerStats"]->GetXaxis()->SetBinLabel(8, "NO TRACKS MATCHED");
-
-    for(const auto& hist : histos1D){
-        hist.second->Sumw2();
-    }
-
-    for(const auto& hist : histos2D){
-        hist.second->Sumw2();
-    }
-
-    if(doDebug)cout<<"StMyAnalysisMaker::initHistos() - DONE"<<endl;
-        
+void StMyAnalysisMaker::addHist1D(const std::string& key, const std::string& title, const int& nBinsX, const double& xMin, const double& xMax){
+    histos1D[key] = new TH1F(key.c_str(), title.c_str(), nBinsX, xMin, xMax);
 }
 
-//void StMyAnalysisMaker::setUpTriggers(){
-//    if(runFlag == RunFlags::kRun14){
-//        trigIds[Triggers::kDefault]     = {450005, 450008, 450009, 450010, 450014, 450015, 450018, 450020, 450024, 450025, 
-//                                           450050, 450060, 450201, 450202, 450203, 450211, 450212, 450213 };               
-//        trigIds[Triggers::kVPDMB5]      = {450005, 450008, 450009, 450014, 450015, 450018, 450024, 450025, 450050, 450060};
-//        trigIds[Triggers::kVPDMB30]     = {450010, 450020};
-//        trigIds[Triggers::kHT1xVPDMB30] = {450201, 450211};
-//        trigIds[Triggers::kHT2xVPDMB30] = {450202, 450212};
-//        trigIds[Triggers::kHT3]         = {450203, 450213};
-//    }else if(runFlag == RunFlags::kRun12){
-//        trigIds[Triggers::kDefault] = {370001, 370011, 370511, 370546, 390203, 370521, 370522, 370531, 370980, 380204, 
-//                                       380205, 380205, 380208, 380206, 380216}; 
-//        trigIds[Triggers::kVPDMB]   = {370001, 370011};
-//        trigIds[Triggers::kHT1]     = {370511, 370546, 390203};
-//        trigIds[Triggers::kHT2]     = {370521, 370522, 370531, 370980, 380204, 380205, 380205, 380208};
-//        trigIds[Triggers::kHT3]     = {380206, 380216};
-//    }
-//
-//}
+void StMyAnalysisMaker::addHist1D(const std::string& key, const std::string& title, const int& nBinsX, double* xBins){
+    histos1D[key] = new TH1F(key.c_str(), title.c_str(), nBinsX, xBins);
+}
+
+void StMyAnalysisMaker::addHist2D(const std::string& key, const std::string& title, const int& nBinsX, const double& xMin, const double& xMax, const int& nBinsY, const double& yMin, const double& yMax){
+    histos2D[key] = new TH2F(key.c_str(), title.c_str(), nBinsX, xMin, xMax, nBinsY, yMin, yMax);
+}
+
+void StMyAnalysisMaker::addHist2D(const std::string& key, const std::string& title, const int& nBinsX, double* xBins, const int& nBinsY, const double& yMin, const double& yMax){
+    histos2D[key] = new TH2F(key.c_str(), title.c_str(), nBinsX, xBins, nBinsY, yMin, yMax);
+}
+
+void StMyAnalysisMaker::addHist2D(const std::string& key, const std::string& title, const int& nBinsX, const double& xMin, const double& xMax, const int& nBinsY, double* yBins){
+    histos2D[key] = new TH2F(key.c_str(), title.c_str(), nBinsX, xMin, xMax, nBinsY, yBins);
+}
+
+void StMyAnalysisMaker::addHist2D(const std::string& key, const std::string& title, const int& nBinsX, double* xBins, const int& nBinsY, double* yBins){
+    histos2D[key] = new TH2F(key.c_str(), title.c_str(), nBinsX, xBins, nBinsY, yBins);
+}
+
+void StMyAnalysisMaker::fillHist1D(const std::string& key, const double& x, const double& weight){
+    auto search = histos1D.find(key);
+    if(search != histos1D.end())  search->second->Fill(x, weight);
+}
+
+void StMyAnalysisMaker::fillHist2D(const std::string& key, const double& x, const double& y, const double& weight){
+    auto search = histos2D.find(key);
+    if(search != histos2D.end()) search->second->Fill(x, y, weight);
+}
 
 double StMyAnalysisMaker::getTrackingEfficiency(double x, double y, int cbin, double zdcx, TFile *infile){
     double effBinContent = -99; // value to be extracted from histogram

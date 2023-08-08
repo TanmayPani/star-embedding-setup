@@ -13,7 +13,9 @@
 #include "TFile.h"
 //My StRoot includes
 #include "StRoot/StMyAnalysisMaker/StMyAnalysisMaker.h"
-#include "StRoot/TStarEventClass/TStarVector.h"
+#include "StRoot/TStarEventClass/TStarArrays.h"
+#include "StRoot/TStarEventClass/TStarJet.h"
+#include "StRoot/TStarEventClass/TStarEvent.h"
 
 using namespace fastjet;
 
@@ -57,20 +59,24 @@ public:
     void add(const TStarVector vec) {
         fPseudoJets.push_back(PseudoJet(vec.px(), vec.py(), vec.pz(), vec.energy()));
         fPseudoJets.back().set_user_info(new StPseudoJetUserInfo(vec));
+        //if(vec.ClassName()=="TStarGenTrack")isGenLevel = true;
     }
     void set(const vector<PseudoJet> vec) {
         clear();
         for(auto& v : vec) fPseudoJets.push_back(v);
     }
-    PseudoJet get(unsigned int i) {return fPseudoJets.at(i);}
+    PseudoJet& at(unsigned int i) {return fPseudoJets.at(i);}
     void clear() {fPseudoJets.clear();}
     vector<PseudoJet> getPseudoJets() {return fPseudoJets;}
     unsigned int numberOfPseudoJets() {return fPseudoJets.size();}
 
+    PseudoJet& operator[](unsigned int i) {return fPseudoJets[i];}
+
     void print(){
         for(auto& v : fPseudoJets)
-            cout<<v.pt()<<" "<<v.eta()<<" "<<v.phi()<<" "<<v.e()<<endl;
+            cout<<"pt: "<<v.pt()<<" eta: "<<v.eta()<<" phi: "<<v.phi()<<" e: "<<v.e()<<endl;
     }
+
 private:
     vector<PseudoJet> fPseudoJets;
 };
@@ -80,9 +86,8 @@ StMaker(name.c_str()){
     doDebug = dodebug;
     if(doDebug)cout<<"StMyJetMaker::StMyJetMaker()"<<endl;
 
-    histoFileName = "Histograms_"+output;
-
-    // tsJet = new TStarJet();
+    histoFileName = output;
+    histoFileName.insert(histoFileName.find(".root"), ".hist");
 }
 
 StMyJetMaker::~StMyJetMaker(){
@@ -106,6 +111,9 @@ StMyJetMaker::~StMyJetMaker(){
 
 Int_t StMyJetMaker::Init(){
     if(doDebug){cout<<"StMyJetMaker::Init()"<<endl;}
+
+    if(!isGenLevel)assert(TStarArrays::hasArray("jets"));
+    else assert(TStarArrays::hasArray("genJets"));
 
     jetConstituents = new StPseudoJetContainer();
 
@@ -154,14 +162,22 @@ Int_t StMyJetMaker::Finish(){
 }
 
 Int_t StMyJetMaker::Make(){
+    if(doDebug)cout<<"StMyJetMaker::Make()"<<endl;
+
+    Wt = TStarArrays::getEvent()->weight();
+    
+    clusterAndStoreJets();
 
     return kStOK;
 }
 
-void StMyJetMaker::clearAll(){
+void StMyJetMaker::Clear(Option_t *option){
+    if(doDebug)cout<<"StMyJetMaker::Clear()"<<endl;
+    //cout<<"Clearing StMyJetMaker"<<endl;
     Wt = 1.0;
     jets->clear();
-    //tsJet->clearConstituentArray();
+    jetConstituents->clear();
+    if(!useSameVectorForBkg)fullEvent->clear();
     if(clustSeq){
         delete clustSeq;
         clustSeq = nullptr;
@@ -173,6 +189,8 @@ void StMyJetMaker::clearAll(){
 }
 
 void StMyJetMaker::addConstituentVector(const TStarVector& vec){
+    string conClassName = vec.ClassName();
+    if(conClassName == "TStarGenTrack")isGenLevel = true;
     if(!doFullJet && vec.charge() == 0) return;
     if(fullEvent){fullEvent->add(vec);}
     if(vec.pt() < jetConstituentMinPt) return;
@@ -203,9 +221,69 @@ void StMyJetMaker::setAreaType(string type){
     areaType = typeFinder->second;   
 }
 
-unsigned int StMyJetMaker::clusterJets(){
-    clearAll();
+int StMyJetMaker::clusterAndStoreJets(){
+    unsigned int nJets = clusterJets();
 
+    if(nJets == 0) return kStOK;
+
+    if(!isGenLevel)TStarArrays::getEvent()->setMaxJetPt(jets->at(0).pt());
+    else TStarArrays::getEvent()->setMaxGenJetPt(jets->at(0).pt());
+
+    for(unsigned int ijet = 0; ijet < nJets; ijet++){
+        PseudoJet jet = jets->at(ijet);
+        if(doDebug)cout<<"Jet: "<<ijet<<" pt: "<<jet.pt()<<" eta: "<<jet.eta()<<" phi: "<<jet.phi()<<endl;
+        histos1D["hJetPt"]->Fill(jet.pt(), Wt);
+        histos1D["hJetEta"]->Fill(jet.eta(), Wt);
+        histos1D["hJetPhi"]->Fill(jet.phi(), Wt);
+        histos1D["hJetMass"]->Fill(jet.m(), Wt);
+        histos1D["hNConstituents"]->Fill(jet.constituents().size(), Wt);
+        histos2D["h2JetEtavPhi"]->Fill(jet.eta(), jet.phi(), jet.pt()*Wt);
+        histos2D["h2JetPtvMass"]->Fill(jet.pt(), jet.m()*Wt);
+
+        TStarJet* tsJet = nullptr;
+        if(isGenLevel)tsJet = TStarArrays::addGenJet();
+        else tsJet = TStarArrays::addJet();
+        tsJet->setIndex(ijet);
+        tsJet->setPtEtaPhiE(jet.pt(), jet.eta(), jet.phi(), jet.e());
+        if(jet.has_area()){
+            histos1D["hJetArea"]->Fill(jet.area(), Wt);
+            histos2D["h2JetPtvArea"]->Fill(jet.pt(), jet.area(), Wt);
+            tsJet->setArea(jet.area(), jet.area_4vector().px(), jet.area_4vector().py(), jet.area_4vector().pz());
+            if(bkgEstimator){
+                tsJet->setLocalRho(bkgEstimator->rho(jet));
+                tsJet->setLocalSigma(bkgEstimator->sigma(jet));
+                if(bkgSubtractor)jet = (*bkgSubtractor)(jet);
+            }
+        }
+        for(auto& con : jet.constituents()){
+            if(doAreaCalc && con.is_pure_ghost())continue;
+            TStarVector conUserInfo = con.user_info<TStarVector>();
+            int conIndex = conUserInfo.index(); 
+	        short conCharge = conUserInfo.charge();
+            histos1D["hConstituentPt"]->Fill(con.pt(), Wt);
+            histos1D["hConstituentEta"]->Fill(con.eta(), Wt);
+            histos1D["hConstituentPhi"]->Fill(con.phi(), Wt);
+            histos1D["hConstituentCharge"]->Fill(conCharge, Wt);
+            double deta = con.eta() - jet.eta();
+            double dphi = jet.delta_phi_to(con);
+            histos2D["h2ConstitEtavPhi"]->Fill(deta, dphi, con.pt()*Wt);
+
+            if(isGenLevel){
+                TStarArrays::getVector("genTracks", conIndex)->setJetIndex(ijet);
+            }else if(conCharge != 0){
+                TStarArrays::getVector("tracks", conIndex)->setJetIndex(ijet);
+            }else if(conCharge == 0){
+                TStarArrays::getVector("towers", conIndex)->setJetIndex(ijet);
+            }else{
+                cout<<"Constituent type unknown "<<conCharge<<endl;
+                continue;
+            }
+        }
+    }
+    return -1;
+}
+
+unsigned int StMyJetMaker::clusterJets(){
     unsigned int nJets = 0;
 
     Selector JetCuts = SelectorPtMin(jetPtMin)*SelectorAbsEtaMax(jetAbsEtaMax);
@@ -235,6 +313,9 @@ unsigned int StMyJetMaker::clusterJets(){
 
         eventRho = bkgEstimator->rho();
         eventSigma = bkgEstimator->sigma();
+
+        TStarArrays::getEvent()->setRho(eventRho);
+        TStarArrays::getEvent()->setSigma(eventSigma);
         
         if(doBkgSub){
             bkgSubtractor->set_background_estimator(bkgEstimator);
@@ -244,43 +325,28 @@ unsigned int StMyJetMaker::clusterJets(){
 
     if(doDebug)cout<<"***************** Done clustering jets ! *******************"<<endl;
 
-    jetConstituents->clear();
-    if(!useSameVectorForBkg)fullEvent->clear();
-
     if(doDebug){
         jetConstituents->print();
         cout<<"***************** Done clearing vectors ! *******************"<<endl;
-        jetConstituents->print();
     }
 
     return nJets;
 }
 
-TStarJet StMyJetMaker::getJet(unsigned int ijet){
+TStarJet* StMyJetMaker::getJet(unsigned int ijet){
     assert(ijet < jets->numberOfPseudoJets());
 
-    PseudoJet jet = jets->get(ijet);
+    PseudoJet jet = jets->at(ijet);
 
     if(doDebug)cout<<"Jet: "<<ijet<<" pt: "<<jet.pt()<<" eta: "<<jet.eta()<<" phi: "<<jet.phi()<<endl;
 
-    histos1D["hJetPt"]->Fill(jet.pt());
-    histos1D["hJetEta"]->Fill(jet.eta());
-    histos1D["hJetPhi"]->Fill(jet.phi());
-    histos1D["hJetMass"]->Fill(jet.m());
-    histos1D["hNConstituents"]->Fill(jet.constituents().size());
-
-    histos2D["h2JetEtavPhi"]->Fill(jet.eta(), jet.phi(), jet.pt());
-    histos2D["h2JetPtvMass"]->Fill(jet.pt(), jet.m());
-
-    TStarJet tsJet(ijet, jet.pt(), jet.eta(), jet.phi(), jet.e());
+    TStarJet* tsJet = new TStarJet(ijet, jet.pt(), jet.eta(), jet.phi(), jet.e());
 
     if(jet.has_area()){
-    histos1D["hJetArea"]->Fill(jet.area());
-    histos1D["h2JetPtvArea"]->Fill(jet.pt(), jet.area());
-    tsJet.setArea(jet.area(), jet.area_4vector().px(), jet.area_4vector().py(), jet.area_4vector().pz());
+        tsJet->setArea(jet.area(), jet.area_4vector().px(), jet.area_4vector().py(), jet.area_4vector().pz());
         if(bkgEstimator){
-            tsJet.setLocalRho(bkgEstimator->rho(jet));
-            tsJet.setLocalSigma(bkgEstimator->sigma(jet));
+            tsJet->setLocalRho(bkgEstimator->rho(jet));
+            tsJet->setLocalSigma(bkgEstimator->sigma(jet));
             if(bkgSubtractor)jet = (*bkgSubtractor)(jet);
         }
     }
@@ -290,18 +356,6 @@ TStarJet StMyJetMaker::getJet(unsigned int ijet){
         int conIndex = con.user_info<StPseudoJetUserInfo>().getIndex();
         short conCharge = con.user_info<StPseudoJetUserInfo>().getCharge();
         if(doDebug)cout<<"Constituent: "<<conIndex<<" pt: "<<con.pt()<<" eta: "<<con.eta()<<" phi: "<<con.phi()<<endl;
-
-        tsJet.addConstituent(conIndex, conCharge);
-
-        histos1D["hConstituentPt"]->Fill(con.pt());
-        histos1D["hConstituentEta"]->Fill(con.eta());
-        histos1D["hConstituentPhi"]->Fill(con.phi());
-        histos1D["hConstituentCharge"]->Fill(conCharge);
-
-        double deta = con.eta() - jet.eta();
-        double dphi = jet.delta_phi_to(con);
-
-        histos2D["h2ConstitEtavPhi"]->Fill(deta, dphi, con.pt());
     }
     return tsJet;
 }
@@ -342,7 +396,7 @@ void StMyJetMaker::declareHistograms(){
     double jetPtMin = 0, jetPtMax = 60; int jetPtBins = 60;
     double jetEtaMin = -1, jetEtaMax = 1; int jetEtaBins = 20;
     double jetPhiMin = 0, jetPhiMax = 2*TMath::Pi(); int jetPhiBins = 20;
-    double jetMassMin = 0, jetMassMax = 60; int jetMassBins = 60;
+    double jetMassMin = 0, jetMassMax = 1; int jetMassBins = 20;
     double jetAreaMin = 0, jetAreaMax = 1; int jetAreaBins = 20;
     double jetConstituentPtMin = 0, jetConstituentPtMax = 30; int jetConstituentPtBins = 30;
     double jetConstituentEtaMin = -1, jetConstituentEtaMax = 1; int jetConstituentEtaBins = 40;

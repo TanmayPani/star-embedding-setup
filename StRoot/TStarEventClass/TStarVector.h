@@ -39,8 +39,8 @@ public:
         if(_Pt < 0 && _Eta < -500) return std::log(fabs(_E + _Pz) / pt());
         return _Eta;
     }
-    double phi() const {
-        if(_Phi < 0) return std::atan2(_Py, _Px);
+    double phi() {
+        if(_Phi < 0) return _force_phi_02pi(std::atan2(_Py, _Px));
         return _Phi;
     }
 
@@ -101,9 +101,9 @@ public:
     double _Px = 0.0; 
     double _Py = 0.0;   
     double _Pz = 0.0; 
-    double _Pt = -999;
-    double _Eta = -999;
-    double _Phi = -999;
+    double _Pt = -999; //!
+    double _Eta = -999;//!
+    double _Phi = -999;//!
 
 private:
     void _set_phi();

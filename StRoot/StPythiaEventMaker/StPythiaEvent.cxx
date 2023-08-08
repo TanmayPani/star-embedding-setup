@@ -92,6 +92,38 @@ StPythiaEvent::StPythiaEvent(const StPythiaEvent& t)
     }
 }
 
+void StPythiaEvent::set(const StPythiaEvent& t){
+    mRunId      = t.mRunId;
+    mEventId    = t.mEventId;
+    mProcessId  = t.mProcessId;
+    mTune       = t.mTune;
+    mVertex     = t.mVertex;
+    mS          = t.mS;
+    mT          = t.mT;
+    mU          = t.mU;
+    mPt         = t.mPt;
+    mCosTheta   = t.mCosTheta;
+    mX1         = t.mX1;
+    mX2         = t.mX2;
+    mMstu72     = t.mMstu72;
+    mMstu73     = t.mMstu73;
+    mMstp111    = t.mMstp111;
+    mPartonALL  = t.mPartonALL;
+
+    copy(t.mDF1,t.mDF1+NPDF,mDF1);
+    copy(t.mDF2,t.mDF2+NPDF,mDF2);
+    
+    copy(t.mF1,t.mF1+2,mF1);
+    copy(t.mF2,t.mF2+2,mF2);
+    
+    mParticles->Clear();
+
+    for (int i = 0; i < t.mParticles->GetEntriesFast(); ++i) {
+        TParticle* p = (TParticle*)t.mParticles->At(i);
+    new ((*mParticles)[i]) TParticle(*p);
+    }
+}
+
 StPythiaEvent& StPythiaEvent::operator=(const StPythiaEvent& rhs) 
 {
     if(this == &rhs) return *this;

@@ -15,11 +15,15 @@ ClassImp(TStarEvent);
 
 using namespace std;
 
+string TStarEvent::_RunFlag = "Run14";
+
 map<string, vector<unsigned int>> TStarEvent::_triggerMap = {
-    {"MBmon", {450011, 450021}}, 
-    {"VPDMB5", {450005, 450008, 450009, 450014, 450015, 450018, 450024, 450025, 450050, 450060}},
-    {"VPDMB30", {450010, 450020}}, {"HT1", {450201, 450211}}, {"HT2", {450202, 450212}},
-    {"HT3", {450203, 450213}}, {"HT", {450201, 450211, 450202, 450212, 450203, 450213}}
+    {"Run14_MBmon", {450011, 450021}}, 
+    {"Run14_VPDMB5", {450005, 450008, 450009, 450014, 450015, 450018, 450024, 450025, 450050, 450060}},
+    {"Run14_VPDMB30", {450010, 450020}}, {"Run14_HT1", {450201, 450211}}, {"Run14_HT2", {450202, 450212}},
+    {"Run14_HT3", {450203, 450213}}, {"Run14_HT", {450201, 450211, 450202, 450212, 450203, 450213}},
+    {"Run12_VPDMB", {370001, 370011}}, {"Run12_HT1", {370511, 370546}}, {"Run12_HT2", {370521, 370522, 370531, 370980}},
+    {"Run12_HT3", {380206, 380216}}
 };
 
 TStarEvent::TStarEvent(){
@@ -70,6 +74,7 @@ bool TStarEvent::isTriggered(unsigned int trig) const {
 }
 
 bool TStarEvent::isTriggered(std::string trig) const {
+    trig = _RunFlag + "_" + trig;
     if(_triggerMap.find(trig) == _triggerMap.end()) return false;
     bool res = false;
     for(auto t : _triggerMap[trig]) res = res || isTriggered(t);

@@ -25,6 +25,7 @@ class TStarJet;
 class StMyJetMaker;
 class StPythiaEvent;
 class StPythiaEventMaker;
+class TObject;
 //class TTree;
 class TFile;
 class TH1F;
@@ -41,7 +42,7 @@ public:
     // class required functions
     virtual Int_t Init();
     virtual Int_t Make();
-    //virtual Int_t Clear();
+    virtual void Clear(Option_t *option="");
     virtual Int_t Finish();
 
     void setDoEventDebug(bool b){doEventDebug = b;}
@@ -62,6 +63,7 @@ public:
     void setCentralityRange(int min, int max){centralityMin = min; centralityMax = max; doCentSelection = true;}
     void setExcludeNoJetEvents(bool b){excludeNoJetEvents = b;}
     void setSelectHTEventsOnly(bool b){selectHTEventsOnly = b;}
+    void setWeightMultiplier(double w){Wt0 = w;}
 
     void setTrackPtMin(double m)        {trackPtMin = m;}
     void setTrackPtMax(double m)        {trackPtMax = m;}
@@ -77,6 +79,19 @@ public:
     void setTowerHadronicCorrType(HadronicCorrectionType t){hadronicCorrType = t;}
     void setJetConstituentMinPt(double pt){jetConstituentMinPt = pt;}
 
+    void addHist1D(const std::string& key, const std::string& title, const int& nBinsX, const double& xMin, const double& xMax);
+    void addHist1D(const std::string& key, const std::string& title, const int& nBinsX, double* xBins);
+    void addHist2D(const std::string& key, const std::string& title, const int& nBinsX, const double& minX, const double& maxX, const int& nBinsY, const double& minY, const double& maxY);
+    void addHist2D(const std::string& key, const std::string& title, const int& nBinsX, double* xBins, const int& nBinsY, const double& minY, const double& maxY);
+    void addHist2D(const std::string& key, const std::string& title, const int& nBinsX, const double& minX, const double& maxX, const int& nBinsY, double* yBins);
+    void addHist2D(const std::string& key, const std::string& title, const int& nBinsX, double* xBins, const int& nBinsY, double* yBins);
+
+    TH1F* getHist1D(const std::string& key){if(histos1D.find(key) != histos1D.end()) return histos1D[key]; else return nullptr;}
+    TH2F* getHist2D(const std::string& key){if(histos2D.find(key) != histos2D.end()) return histos2D[key]; else return nullptr;}
+
+    void fillHist1D(const std::string& key, const double& x, const double& weight = 1.0);
+    void fillHist2D(const std::string& key, const double& x, const double& y, const double& weight = 1.0);
+
     //Output Methods...
     TStarEvent* getEvent(){return tsEvent;}
 
@@ -88,37 +103,33 @@ private:
     // bad run list 
     std::set<int>        badRuns;
 
-    //Various functions to initialize stuff in Init()...
-    void setUpBadRuns();
-    void setUpBadTowers();
-    void setUpDeadTowers();
-    void declareHistograms();
-    void writeHistograms();
-
-    //To check event for triggers...
-    double getTrackingEfficiency(double pt, double eta, int centbin, double zdcx, TFile *infile);
-
-    //To set centrality related info...
-    int runStRefMultCorr();
-
     //To get event related info...
     int getMakers();
-    int setUpTriggers();
+    int makeEvent();
     int makeDetectorLevel();
     int makeGenLevel();
+
+    int runStRefMultCorr(); //To set centrality related info...
+    int setUpTriggers();
 
     void runOverTracks();
     void runOverTowers();
     void runOverGenTracks();
-
-    int  runOverJets();
-    int  runOverGenJets();
 
     void bookTree();
 
     bool isTrackGood(StPicoTrack *track);
     bool isGenTrackGood(StPicoMcTrack *track);
     bool isTowerGood(unsigned int itow, StPicoBTowHit *tower);
+
+    //Various functions to initialize stuff in Init()...
+    void setUpBadRuns();
+    void setUpBadTowers();
+    void setUpDeadTowers();
+    void writeHistograms();
+
+    //To check event for triggers...
+    double getTrackingEfficiency(double pt, double eta, int centbin, double zdcx, TFile *infile);
 
     RunFlags runFlag = RunFlags::kRun14;
     HadronicCorrectionType hadronicCorrType = HadronicCorrectionType::kFull;
@@ -167,7 +178,6 @@ private:
     bool doppAnalysis = false;
     bool doRunbyRun = false;
     bool selectHTEventsOnly = false;
-    //bool doSelectForMBEvents = false;
     bool doCentSelection = false;
     bool excludeNoJetEvents = false;
     bool doJetAnalysis = false;
@@ -229,6 +239,7 @@ private:
     int ref9 = -99;
     int ref16 = -99;
     double Wt = 1.0;
+    double Wt0 = 1.0;
 
     std::vector<unsigned int> eventTriggers;
 

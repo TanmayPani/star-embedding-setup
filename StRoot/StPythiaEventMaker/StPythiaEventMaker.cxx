@@ -115,6 +115,7 @@ Int_t StPythiaEventMaker::makeTChain(){
 
     }else{ 
         size_t muposdir = dirFile.find(".MuDst.root");
+        //size_t picoposdir = dirFile.find("picoDst.root");
         if(muposdir != string::npos){
             cout<<"File is Mu"<<endl;
             dirFile.replace(muposdir, 11, ".pythia.root");

@@ -1,0 +1,1918 @@
+*** Float Point Exception is OFF ***
+ *** Start at Date : Wed Jul 19 06:50:44 2023
+QAInfo:You are using STAR_LEVEL : new, ROOT_LEVEL : 5.34.38 and node : rcas6010.rcf.bnl.gov 
+
+Processing readPicoDstAnalysisMaker.C...
+strangeArrayNames-arrayNames-__NARRAYS__ = 0
+ loading of shared libraries done
+ 
+Loaded shared libraries
+=======================
+/lib/libpthread.so
+/lib/libm.so
+/lib/libpcre.so
+/lib/liblzma.so
+/lib/libz.so
+/lib/libdl.so
+/lib/libc.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libCint.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libCore.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libRint.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libMathCore.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StarClassLibrary.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libThread.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libRIO.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libGeom.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libMatrix.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libHist.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libGraf.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libGpad.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libGraf3d.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libNet.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libTree.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libTable.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libPhysics.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libEG.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StarRoot.so
+/afs/rhic.bnl.gov/star/ROOT/36/5.34.38/.sl73_gcc485/rootdeb/lib/libRootAuth.so
+/star/u/tpani/FastJet/fastjet-install/lib/libfastjet.so
+/star/u/tpani/FastJet/fastjet-install/lib/libsiscone.so
+/star/u/tpani/FastJet/fastjet-install/lib/libsiscone_spherical.so
+/star/u/tpani/FastJet/fastjet-install/lib/libfastjetplugins.so
+/star/u/tpani/FastJet/fastjet-install/lib/libfastjettools.so
+/star/u/tpani/FastJet/fastjet-install/lib/libfastjetcontribfragile.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libStTableUtilities.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/St_base.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StChain.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/St_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libsim_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libglobal_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libftpc_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libctf_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libgeometry_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libemc_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libsvt_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libgen_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libStDb_Tables.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StUtilities.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StTreeMaker.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StIOMaker.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StTriggerDataMaker.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StBichsel.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StEvent.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StTpcDb.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libStarMagField.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StEventUtilities.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StDbLib.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StEmcUtil.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StTofUtil.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StPmdUtil.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StPreEclMaker.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StStrangeMuDstMaker.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/StMuDSTMaker.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libStPicoEvent.so
+/afs/rhic.bnl.gov/star/packages/SL23d/.sl73_gcc485/lib/libStPicoDstMaker.so
+/gpfs/mnt/gpfs01/star/pwg/tpani/Embedding_Framework/.sl73_gcc485/lib/libStRefMultCorr.so
+/gpfs/mnt/gpfs01/star/pwg/tpani/Embedding_Framework/.sl73_gcc485/lib/libTStarEventClass.so
+/gpfs/mnt/gpfs01/star/pwg/tpani/Embedding_Framework/.sl73_gcc485/lib/libStMyAnalysisMaker.so
+/gpfs/mnt/gpfs01/star/pwg/tpani/Embedding_Framework/.sl73_gcc485/lib/libStMyJetMaker.so
+-----------------------
+68 libraries loaded
+=======================
+StInfo: StPicoDstMaker::SetStatus 0 to Event
+StInfo: StPicoDstMaker::SetStatus 0 to Track
+StInfo: StPicoDstMaker::SetStatus 0 to EmcTrigger
+StInfo: StPicoDstMaker::SetStatus 0 to MtdTrigger
+StInfo: StPicoDstMaker::SetStatus 0 to BTowHit
+StInfo: StPicoDstMaker::SetStatus 0 to BTofHit
+StInfo: StPicoDstMaker::SetStatus 0 to MtdHit
+StInfo: StPicoDstMaker::SetStatus 0 to BbcHit
+StInfo: StPicoDstMaker::SetStatus 0 to EpdHit
+StInfo: StPicoDstMaker::SetStatus 0 to FmsHit
+StInfo: StPicoDstMaker::SetStatus 0 to EmcPidTraits
+StInfo: StPicoDstMaker::SetStatus 0 to BTofPidTraits
+StInfo: StPicoDstMaker::SetStatus 0 to MtdPidTraits
+StInfo: StPicoDstMaker::SetStatus 0 to TrackCovMatrix
+StInfo: StPicoDstMaker::SetStatus 0 to BEmcSmdEHit
+StInfo: StPicoDstMaker::SetStatus 0 to BEmcSmdPHit
+StInfo: StPicoDstMaker::SetStatus 0 to ETofHit
+StInfo: StPicoDstMaker::SetStatus 0 to ETofPidTraits
+StInfo: StPicoDstMaker::SetStatus 0 to McVertex
+StInfo: StPicoDstMaker::SetStatus 0 to McTrack
+StInfo: StPicoDstMaker::SetStatus 1 to Event
+StInfo: StPicoDstMaker::SetStatus 1 to Track
+StInfo: StPicoDstMaker::SetStatus 1 to BTowHit
+StInfo: StPicoDstMaker::SetStatus 1 to McVertex
+StInfo: StPicoDstMaker::SetStatus 1 to McTrack
+StMyJetMaker::StMyJetMaker()
+StMyJetMaker::StMyJetMaker()
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15109045_raw_2000009.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15083007_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15156021_raw_2500007.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15118058_raw_4000004.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15136014_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15141001_raw_5500041.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15156024_raw_5500007.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15109021_raw_1000011.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15123026_raw_3000041.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15128026_raw_4000037.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15120009_raw_4500037.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15078017_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15106001_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15118015_raw_5500008.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15120117_raw_1500005.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15134056_raw_1500009.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15159036_raw_2500008.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15127001_raw_5500011.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15112047_raw_4000036.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15163023_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15100026_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15136016_raw_4000038.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15128027_raw_3500039.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15117062_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15112009_raw_3000009.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15157025_raw_5500035.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15123035_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15108009_raw_3000008.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15146017_raw_0000000.picoDst.root
+StInfo:  Read in picoDst file /gpfs01/star/pwg/tpani/output/Pythia6Embedding_AuAu_200_production_2014_P18ih_SL18h_20192901_MuToPico20230718/pt30_40_6/out/st_physics_adc_15129001_raw_0000000.picoDst.root
+StInfo:  Total 30 files have been read in.
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_refmult.txt [OK]
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For refmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_refmult2.txt [OK]
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For refmult2: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_refmult3.txt [OK]
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For refmult3: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For toftray: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For grefmult: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_P16id.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010_P16id.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011_P16id.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012_P16id.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013_P16id.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014_P16id.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014_P16id.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015_P16id.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P16id: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016_P16id.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_P17id_VpdMB30.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010_P17id_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011_P17id_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012_P17id_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013_P17id_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014_P17id_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015_P17id_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P17id_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016_P17id_VpdMB30.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_P18ih_VpdMB30.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010_P18ih_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011_P18ih_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012_P18ih_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013_P18ih_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014_P18ih_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015_P18ih_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016_P18ih_VpdMB30.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_P18ih_VpdMB30_AllLumi.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016_P18ih_VpdMB30_AllLumi.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_P18ih_VpdMB30_AllLumi.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_VpdMB30.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014_VpdMB30.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014_VpdMB30.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015_VpdMB30.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMB30: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016_VpdMB30.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_VpdMBnoVtx.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010_VpdMBnoVtx.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011_VpdMBnoVtx.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012_VpdMBnoVtx.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013_VpdMBnoVtx.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014_VpdMBnoVtx.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014_VpdMBnoVtx.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015_VpdMBnoVtx.txt
+
+StRefMultCorr::readBadRuns  For grefmult_VpdMBnoVtx: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016_VpdMBnoVtx.txt
+
+StRefMultCorr::read  Open StRoot/StRefMultCorr/Centrality_def_grefmult_P18ih_VpdMB30_AllLumi.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2010.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2011.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2012.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2013.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt
+  StRoot/StRefMultCorr/bad_runs_refmult_year2014.txt [OK]
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2015.txt
+
+StRefMultCorr::readBadRuns  For grefmult_P18ih_VpdMB30_AllLumi_MB5sc: open bad run file: StRoot/StRefMultCorr/bad_runs_refmult_year2016.txt
+
+0 2 -16, -14
+1 2 -14, -12
+2 2 -12, -10
+3 2 -10, -8
+4 2 -8, -6
+5 2 -6, -4
+6 2 -4, -2
+7 2 -2, 0
+8 2 0, 2
+9 2 2, 4
+10 2 4, 6
+11 2 6, 8
+12 2 8, 10
+13 2 10, 12
+14 2 12, 14
+15 2 14, 16
+StRefMultCorr::readScaleForWeight  Read scale factor ... [OK]
+Opening Bad Tower file: StRoot/StMyAnalysisMaker/towerLists/Y2014_BadTowers_P18ih_2000MeV.txt
+Opening Dead Tower file: StRoot/StMyAnalysisMaker/towerLists/Y2014_DeadTowers_P18ih.txt
+Writing tree to: EventTree_test.root
+Events tree directory set
+StMyJetMaker::Init()
+Jet definition set: 
+Longitudinally invariant anti-kt algorithm with R = 0.4 and boost-invariant pt2 scheme recombination
+StMyAnalysisMaker::initHistos() - DONE
+StMyJetMaker::Init()
+Jet definition set: 
+Longitudinally invariant anti-kt algorithm with R = 0.4 and boost-invariant pt2 scheme recombination
+StMyAnalysisMaker::initHistos() - DONE
+chain->Init();
+ Total entries = 600
+Working on eventNumber 0
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 0 pt: 2.0106 eta: -0.734061 phi: 0.433948 charge: 1
+TStarTrack: 0 pt: 2.0106 eta: -0.734061 phi: 0.433948 charge: 1
+StPicoTrack: 3 pt: 4.31064 eta: -0.541931 phi: 0.63048 charge: 1
+TStarTrack: 3 pt: 4.31064 eta: -0.541931 phi: 0.63048 charge: 1
+StPicoTrack: 106 pt: 10.4495 eta: 0.909666 phi: -1.43567 charge: 1
+TStarTrack: 62 pt: 10.4495 eta: 0.909666 phi: 4.84752 charge: 1
+StPicoTrack: 107 pt: 9.21871 eta: 0.949151 phi: -1.49656 charge: 1
+TStarTrack: 63 pt: 9.21871 eta: 0.949151 phi: 4.78663 charge: 1
+StPicoTower: 4293 Et: 2.0308 eta: -0.670051 phi: 0.498858
+TStarTower:46 Pt: 2.02765 eta: -0.670051 phi: 0.498858
+StPicoMcTrack: 20 Pt: 4.33045 eta: -0.54296 phi: 0.630744
+TStarGenTrack:5 Pt: 4.33045 eta: -0.54296 phi: 0.630744
+StPicoMcTrack: 26 Pt: 10.7846 eta: 0.90985 phi: -1.43509
+TStarGenTrack:7 Pt: 10.7846 eta: 0.90985 phi: 4.8481
+StPicoMcTrack: 58 Pt: 2.02953 eta: -0.734014 phi: 0.433269
+TStarGenTrack:16 Pt: 2.02953 eta: -0.734014 phi: 0.433269
+StPicoMcTrack: 68 Pt: 9.06631 eta: 0.94964 phi: -1.49687
+TStarGenTrack:19 Pt: 9.06631 eta: 0.94964 phi: 4.78632
+StPicoMcTrack: 108 Pt: 2.85374 eta: -0.524652 phi: 0.59888
+TStarGenTrack:25 Pt: 2.85374 eta: -0.524652 phi: 0.59888
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+4.33045 -0.54296 0.630744 5.009
+10.7846 0.90985 4.8481 15.5934
+2.02953 -0.734014 0.433269 2.605
+9.06631 0.94964 4.78632 13.4717
+2.85374 -0.524652 0.59888 3.25559
+#--------------------------------------------------------------------------
+#                         FastJet release 3.3.4
+#                 M. Cacciari, G.P. Salam and G. Soyez                  
+#     A software package for jet finding and analysis at colliders      
+#                           http://fastjet.fr                           
+#	                                                                      
+# Please cite EPJC72(2012)1896 [arXiv:1111.6097] if you use this package
+# for scientific work and optionally PLB641(2006)57 [hep-ph/0512210].   
+#                                                                       
+# FastJet is provided without warranty under the GNU GPL v2 or higher.  
+# It uses T. Chan's closest pair algorithm, S. Fortune's Voronoi code
+# and 3rd party plugin jet algorithms. See COPYING file for details.
+#--------------------------------------------------------------------------
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 165 pt: 2.22973 eta: 0.177167 phi: 2.42406 charge: 1
+TStarTrack: 9 pt: 2.22973 eta: 0.177167 phi: 2.42406 charge: 1
+StPicoTrack: 321 pt: 2.28874 eta: -0.593861 phi: -0.905236 charge: -1
+TStarTrack: 18 pt: 2.28874 eta: -0.593861 phi: 5.37795 charge: -1
+StPicoTrack: 324 pt: 3.70809 eta: -0.451303 phi: -0.873573 charge: -1
+TStarTrack: 20 pt: 3.70809 eta: -0.451303 phi: 5.40961 charge: -1
+StPicoTrack: 367 pt: 2.25617 eta: -0.302405 phi: -0.468578 charge: 1
+TStarTrack: 22 pt: 2.25617 eta: -0.302405 phi: 5.81461 charge: 1
+StPicoTrack: 371 pt: 6.96465 eta: -0.109069 phi: -0.399916 charge: 1
+TStarTrack: 23 pt: 6.96465 eta: -0.109069 phi: 5.88327 charge: 1
+StPicoTrack: 372 pt: 6.43255 eta: -0.0916123 phi: -0.46713 charge: -1
+TStarTrack: 24 pt: 6.43255 eta: -0.0916123 phi: 5.81606 charge: -1
+StPicoTower: 1906 Et: 9.52741 eta: 0.378214 phi: 2.59195
+TStarTower:12 Pt: 9.52652 eta: 0.378214 phi: 2.59195
+StPicoTower: 1925 Et: 3.66393 eta: 0.328986 phi: 2.53674
+TStarTower:13 Pt: 3.66154 eta: 0.328986 phi: 2.53674
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+2.0106 -0.734061 0.433948 2.58084
+4.31064 -0.541931 0.63048 4.96124
+10.4495 0.909666 4.84752 15.0801
+9.21871 0.949151 4.78663 13.6932
+2.02765 -0.670051 0.498858 2.504
+2.22973 0.177167 2.42406 2.26911
+2.28874 -0.593861 5.37795 2.70793
+3.70809 -0.451303 5.40961 4.09454
+2.25617 -0.302405 5.81461 2.36424
+6.96465 -0.109069 5.88327 7.0075
+6.43255 -0.0916123 5.81606 6.46107
+9.52652 0.378214 2.59195 10.217
+3.66154 0.328986 2.53674 3.864
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 2
+Jet: 0 pt: 15.6534 eta: -0.10655 phi: 5.85129
+Constituent: 22 pt: 2.25617 eta: -0.302405 phi: 5.81461
+Constituent: 23 pt: 6.96465 eta: -0.109069 phi: 5.88327
+Constituent: 24 pt: 6.43255 eta: -0.0916123 phi: 5.81606
+Jet # 0 pt: 15.6534 eta: -0.10655 phi: 5.85129
+Jet has 3 constituents
+Constituent # 0 index: 22 charge: 1
+___Constituent 0 is track # 22 pt: 2.25617 eta: -0.302405 phi: 5.81461
+Constituent # 1 index: 23 charge: 1
+___Constituent 1 is track # 23 pt: 6.96465 eta: -0.109069 phi: 5.88327
+Constituent # 2 index: 24 charge: -1
+___Constituent 2 is track # 24 pt: 6.43255 eta: -0.0916123 phi: 5.81606
+Jet: 1 pt: 15.4178 eta: 0.366396 phi: 2.58037
+Constituent: 9 pt: 2.22973 eta: 0.177167 phi: 2.42406
+Constituent: 12 pt: 9.52652 eta: 0.378214 phi: 2.59195
+Constituent: 13 pt: 3.66154 eta: 0.328986 phi: 2.53674
+Jet # 1 pt: 15.4178 eta: 0.366396 phi: 2.58037
+Jet has 3 constituents
+Constituent # 0 index: 9 charge: 1
+___Constituent 0 is track # 9 pt: 2.22973 eta: 0.177167 phi: 2.42406
+Constituent # 1 index: 12 charge: 0
+___Constituent 1 is tower # 12 Et: 9.52741 eta: 0.378214 phi: 2.59195
+Constituent # 2 index: 13 charge: 0
+___Constituent 2 is tower # 13 Et: 3.66393 eta: 0.328986 phi: 2.53674
+2 jets clustered, 2 jets stored.
+********** END StMyAnalysisMaker::runOverJets() done************
+StPicoMcTrack: 0 Pt: 6.7225 eta: -0.109508 phi: -0.400066
+TStarGenTrack:0 Pt: 6.7225 eta: -0.109508 phi: 5.88312
+StPicoMcTrack: 1 Pt: 6.7631 eta: -0.0915653 phi: -0.468
+TStarGenTrack:1 Pt: 6.7631 eta: -0.0915653 phi: 5.81519
+StPicoMcTrack: 5 Pt: 2.25917 eta: 0.178843 phi: 2.42412
+TStarGenTrack:3 Pt: 2.25917 eta: 0.178843 phi: 2.42412
+StPicoMcTrack: 13 Pt: 3.7144 eta: -0.450094 phi: -0.87381
+TStarGenTrack:5 Pt: 3.7144 eta: -0.450094 phi: 5.40938
+StPicoMcTrack: 34 Pt: 5.2656 eta: -0.0875083 phi: -0.447993
+TStarGenTrack:9 Pt: 5.2656 eta: -0.0875083 phi: 5.83519
+StPicoMcTrack: 35 Pt: 2.25921 eta: -0.30295 phi: -0.471896
+TStarGenTrack:10 Pt: 2.25921 eta: -0.30295 phi: 5.81129
+StPicoMcTrack: 43 Pt: 8.33823 eta: 0.389717 phi: 2.52927
+TStarGenTrack:15 Pt: 8.33823 eta: 0.389717 phi: 2.52927
+StPicoMcTrack: 49 Pt: 2.31062 eta: -0.593404 phi: -0.902649
+TStarGenTrack:16 Pt: 2.31062 eta: -0.593404 phi: 5.38054
+StPicoMcTrack: 50 Pt: 2.24797 eta: -0.389234 phi: -0.679743
+TStarGenTrack:17 Pt: 2.24797 eta: -0.389234 phi: 5.60344
+StPicoMcTrack: 133 Pt: 10.2737 eta: 0.370277 phi: 2.60904
+TStarGenTrack:29 Pt: 10.2737 eta: 0.370277 phi: 2.60904
+StPicoMcTrack: 135 Pt: 4.22083 eta: 0.314514 phi: 2.53918
+TStarGenTrack:30 Pt: 4.22083 eta: 0.314514 phi: 2.53918
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+6.7225 -0.109508 5.88312 6.78084
+6.7631 -0.0915653 5.81519 6.79291
+2.25917 0.178843 2.42412 2.34789
+3.7144 -0.450094 5.40938 4.09941
+5.2656 -0.0875083 5.83519 5.30915
+2.25921 -0.30295 5.81129 2.3678
+8.33823 0.389717 2.52927 8.98057
+2.31062 -0.593404 5.38054 2.73309
+2.24797 -0.389234 5.60344 2.42444
+10.2737 0.370277 2.60904 10.9861
+4.22083 0.314514 2.53918 4.43132
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 25.0919 eta: 0.372932 phi: 2.57403
+Constituent: 3 pt: 2.25917 eta: 0.178843 phi: 2.42412
+Constituent: 30 pt: 4.22083 eta: 0.314514 phi: 2.53918
+Constituent: 15 pt: 8.33823 eta: 0.389717 phi: 2.52927
+Constituent: 29 pt: 10.2737 eta: 0.370277 phi: 2.60904
+Gen Jet # 0 pt: 25.0919 eta: 0.372932 phi: 2.57402
+Gen Jet has 4 constituents
+___Constituent 0 is gen track # 3 pt: 2.25917 eta: 0.178843 phi: 2.42412
+___Constituent 1 is gen track # 15 pt: 8.33823 eta: 0.389717 phi: 2.52927
+___Constituent 2 is gen track # 29 pt: 10.2737 eta: 0.370277 phi: 2.60904
+___Constituent 3 is gen track # 30 pt: 4.22083 eta: 0.314514 phi: 2.53918
+Jet: 1 pt: 23.2584 eta: -0.100748 phi: 5.8341
+Constituent: 17 pt: 2.24797 eta: -0.389234 phi: 5.60344
+Constituent: 10 pt: 2.25921 eta: -0.30295 phi: 5.81129
+Constituent: 0 pt: 6.7225 eta: -0.109508 phi: 5.88312
+Constituent: 1 pt: 6.7631 eta: -0.0915653 phi: 5.81519
+Constituent: 9 pt: 5.2656 eta: -0.0875083 phi: 5.83519
+Gen Jet # 1 pt: 23.2584 eta: -0.100748 phi: 5.8341
+Gen Jet has 5 constituents
+___Constituent 0 is gen track # 0 pt: 6.7225 eta: -0.109508 phi: 5.88312
+___Constituent 1 is gen track # 1 pt: 6.7631 eta: -0.0915653 phi: 5.81519
+___Constituent 2 is gen track # 9 pt: 5.2656 eta: -0.0875083 phi: 5.83519
+___Constituent 3 is gen track # 10 pt: 2.25921 eta: -0.30295 phi: 5.81129
+___Constituent 4 is gen track # 17 pt: 2.24797 eta: -0.389234 phi: 5.60344
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 9 pt: 2.14055 eta: -0.0243319 phi: 0.85099 charge: 1
+TStarTrack: 6 pt: 2.14055 eta: -0.0243319 phi: 0.85099 charge: 1
+StPicoTrack: 17 pt: 4.83403 eta: 0.0928447 phi: 1.36366 charge: -1
+TStarTrack: 14 pt: 4.83403 eta: 0.0928447 phi: 1.36366 charge: -1
+StPicoTrack: 97 pt: 3.78655 eta: 0.198133 phi: 1.51796 charge: -1
+TStarTrack: 50 pt: 3.78655 eta: 0.198133 phi: 1.51796 charge: -1
+StPicoMcTrack: 44 Pt: 2.15849 eta: -0.023195 phi: 0.851228
+TStarGenTrack:9 Pt: 2.15849 eta: -0.023195 phi: 0.851228
+StPicoMcTrack: 45 Pt: 4.76674 eta: 0.093871 phi: 1.36368
+TStarGenTrack:10 Pt: 4.76674 eta: 0.093871 phi: 1.36368
+StPicoMcTrack: 48 Pt: 3.70789 eta: 0.198287 phi: 1.51787
+TStarGenTrack:12 Pt: 3.70789 eta: 0.198287 phi: 1.51787
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+2.15849 -0.023195 0.851228 2.16358
+4.76674 0.093871 1.36368 4.78979
+3.70789 0.198287 1.51787 3.78359
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 14 pt: 10.062 eta: -0.425615 phi: 1.2235 charge: 1
+TStarTrack: 10 pt: 10.062 eta: -0.425615 phi: 1.2235 charge: 1
+StPicoTrack: 15 pt: 10.1574 eta: -0.35894 phi: 1.25191 charge: -1
+TStarTrack: 11 pt: 10.1574 eta: -0.35894 phi: 1.25191 charge: -1
+StPicoTrack: 23 pt: 2.75126 eta: -0.696048 phi: 1.63892 charge: 1
+TStarTrack: 15 pt: 2.75126 eta: -0.696048 phi: 1.63892 charge: 1
+StPicoTrack: 25 pt: 4.19249 eta: -0.640663 phi: 1.54465 charge: 1
+TStarTrack: 16 pt: 4.19249 eta: -0.640663 phi: 1.54465 charge: 1
+StPicoTrack: 27 pt: 4.56387 eta: -0.627433 phi: 1.74648 charge: -1
+TStarTrack: 17 pt: 4.56387 eta: -0.627433 phi: 1.74648 charge: -1
+StPicoTrack: 108 pt: 5.59206 eta: -0.430157 phi: -2.05536 charge: 1
+TStarTrack: 53 pt: 5.59206 eta: -0.430157 phi: 4.22783 charge: 1
+StPicoTrack: 126 pt: 5.80185 eta: -0.192644 phi: -1.7182 charge: 1
+TStarTrack: 64 pt: 5.80185 eta: -0.192644 phi: 4.56499 charge: 1
+StPicoTrack: 131 pt: 7.18036 eta: 0.0860499 phi: -1.60288 charge: -1
+TStarTrack: 66 pt: 7.18036 eta: 0.0860499 phi: 4.68031 charge: -1
+StPicoTrack: 198 pt: 2.07374 eta: 0.909696 phi: -1.53181 charge: 1
+TStarTrack: 90 pt: 2.07374 eta: 0.909696 phi: 4.75137 charge: 1
+StPicoTower: 4772 Et: 2.33299 eta: -0.626489 phi: 1.75436
+TStarTower:102 Pt: 2.3301 eta: -0.626489 phi: 1.75436
+StPicoMcTrack: 2 Pt: 6.86877 eta: 0.0533535 phi: -1.74662
+TStarGenTrack:0 Pt: 6.86877 eta: 0.0533535 phi: 4.53657
+StPicoMcTrack: 5 Pt: 5.52902 eta: -0.193 phi: -1.71948
+TStarGenTrack:1 Pt: 5.52902 eta: -0.193 phi: 4.56371
+StPicoMcTrack: 19 Pt: 4.73707 eta: -0.636051 phi: 1.74627
+TStarGenTrack:5 Pt: 4.73707 eta: -0.636051 phi: 1.74627
+StPicoMcTrack: 20 Pt: 2.75004 eta: -0.697878 phi: 1.63926
+TStarGenTrack:6 Pt: 2.75004 eta: -0.697878 phi: 1.63926
+StPicoMcTrack: 21 Pt: 7.25801 eta: 0.0854712 phi: -1.60138
+TStarGenTrack:7 Pt: 7.25801 eta: 0.0854712 phi: 4.68181
+StPicoMcTrack: 32 Pt: 10.4138 eta: -0.359289 phi: 1.25195
+TStarGenTrack:11 Pt: 10.4138 eta: -0.359289 phi: 1.25195
+StPicoMcTrack: 33 Pt: 9.8826 eta: -0.426252 phi: 1.2235
+TStarGenTrack:12 Pt: 9.8826 eta: -0.426252 phi: 1.2235
+StPicoMcTrack: 42 Pt: 5.57782 eta: -0.4304 phi: -2.05531
+TStarGenTrack:14 Pt: 5.57782 eta: -0.4304 phi: 4.22788
+StPicoMcTrack: 48 Pt: 2.78303 eta: -0.639762 phi: 1.77476
+TStarGenTrack:17 Pt: 2.78303 eta: -0.639762 phi: 1.77476
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+6.86877 0.0533535 4.53657 6.89625
+5.52902 -0.193 4.56371 5.63404
+4.73707 -0.636051 1.74627 5.72973
+2.75004 -0.697878 1.63926 3.45016
+7.25801 0.0854712 4.68181 7.30125
+10.4138 -0.359289 1.25195 11.094
+9.8826 -0.426252 1.2235 10.795
+5.57782 -0.4304 4.22788 6.10407
+2.78303 -0.639762 1.77476 3.37226
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 20.2964 eta: -0.390984 phi: 1.23847
+Constituent: 11 pt: 10.4138 eta: -0.359289 phi: 1.25195
+Constituent: 12 pt: 9.8826 eta: -0.426252 phi: 1.2235
+Gen Jet # 0 pt: 20.2964 eta: -0.390984 phi: 1.23847
+Gen Jet has 2 constituents
+___Constituent 0 is gen track # 11 pt: 10.4138 eta: -0.359289 phi: 1.25195
+___Constituent 1 is gen track # 12 pt: 9.8826 eta: -0.426252 phi: 1.2235
+Jet: 1 pt: 19.6558 eta: 0.0351836 phi: 4.60661
+Constituent: 1 pt: 5.52902 eta: -0.193 phi: 4.56371
+Constituent: 0 pt: 6.86877 eta: 0.0533535 phi: 4.53657
+Constituent: 7 pt: 7.25801 eta: 0.0854712 phi: 4.68181
+Gen Jet # 1 pt: 19.6558 eta: 0.0351836 phi: 4.60661
+Gen Jet has 3 constituents
+___Constituent 0 is gen track # 0 pt: 6.86877 eta: 0.0533535 phi: 4.53657
+___Constituent 1 is gen track # 1 pt: 5.52902 eta: -0.193 phi: 4.56371
+___Constituent 2 is gen track # 7 pt: 7.25801 eta: 0.0854712 phi: 4.68181
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 28 pt: 2.02889 eta: -0.165194 phi: 0.378948 charge: 1
+TStarTrack: 10 pt: 2.02889 eta: -0.165194 phi: 0.378948 charge: 1
+StPicoTrack: 33 pt: 2.15884 eta: 0.0666353 phi: 0.737632 charge: -1
+TStarTrack: 12 pt: 2.15884 eta: 0.0666353 phi: 0.737632 charge: -1
+StPicoTrack: 298 pt: 2.55035 eta: 0.0190761 phi: 2.42443 charge: 1
+TStarTrack: 101 pt: 2.55035 eta: 0.0190761 phi: 2.42443 charge: 1
+StPicoTrack: 392 pt: 2.25837 eta: 0.322448 phi: 2.89992 charge: 1
+TStarTrack: 129 pt: 2.25837 eta: 0.322448 phi: 2.89992 charge: 1
+StPicoTrack: 489 pt: 3.18276 eta: -0.423511 phi: -2.35519 charge: 1
+TStarTrack: 168 pt: 3.18276 eta: -0.423511 phi: 3.92799 charge: 1
+StPicoTrack: 679 pt: 2.79248 eta: 0.835209 phi: -1.21597 charge: -1
+TStarTrack: 231 pt: 2.79248 eta: 0.835209 phi: 5.06721 charge: -1
+StPicoTrack: 956 pt: 2.8917 eta: 0.171918 phi: 0.697081 charge: 1
+TStarTrack: 308 pt: 2.8917 eta: 0.171918 phi: 0.697081 charge: 1
+StPicoTrack: 1565 pt: 2.15363 eta: -0.959935 phi: -1.72521 charge: 1
+TStarTrack: 422 pt: 2.15363 eta: -0.959935 phi: 4.55798 charge: 1
+StPicoTrack: 1589 pt: 3.31647 eta: 0.143855 phi: 0.922859 charge: 1
+TStarTrack: 426 pt: 3.31647 eta: 0.143855 phi: 0.922859 charge: 1
+StPicoTrack: 1730 pt: 4.51661 eta: 0.14588 phi: 0.799074 charge: 1
+TStarTrack: 442 pt: 4.51661 eta: 0.14588 phi: 0.799074 charge: 1
+StPicoTower: 182 Et: 4.1019 eta: 0.070152 phi: 0.812529
+TStarTower:16 Pt: 4.09954 eta: 0.070152 phi: 0.812529
+StPicoTower: 374 Et: 2.01029 eta: 0.680505 phi: 0.339074
+TStarTower:46 Pt: 2.00714 eta: 0.680505 phi: 0.339074
+StPicoTower: 1618 Et: 2.52517 eta: 0.887629 phi: -2.90763
+TStarTower:187 Pt: 2.52326 eta: 0.887629 phi: 3.37555
+StPicoTower: 3189 Et: 5.89916 eta: -0.524386 phi: -2.38339
+TStarTower:378 Pt: 5.8979 eta: -0.524386 phi: 3.8998
+StPicoTower: 3210 Et: 2.52552 eta: -0.573272 phi: -2.32817
+TStarTower:386 Pt: 2.52269 eta: -0.573272 phi: 3.95502
+StPicoTower: 3248 Et: 4.14746 eta: -0.475385 phi: -2.22333
+TStarTower:393 Pt: 4.14557 eta: -0.475385 phi: 4.05986
+StPicoTower: 3249 Et: 4.51322 eta: -0.524349 phi: -2.22333
+TStarTower:394 Pt: 4.51156 eta: -0.524349 phi: 4.05986
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+2.14055 -0.0243319 0.85099 2.14573
+4.83403 0.0928447 1.36366 4.85688
+3.78655 0.198133 1.51796 3.86364
+10.062 -0.425615 1.2235 10.9881
+10.1574 -0.35894 1.25191 10.8197
+2.75126 -0.696048 1.63892 3.4479
+4.19249 -0.640663 1.54465 5.08465
+4.56387 -0.627433 1.74648 5.49383
+5.59206 -0.430157 4.22783 6.11904
+5.80185 -0.192644 4.56499 5.91149
+7.18036 0.0860499 4.68031 7.20831
+2.07374 0.909696 4.75137 2.99588
+2.3301 -0.626489 1.75436 2.806
+2.02889 -0.165194 0.378948 2.06136
+2.15884 0.0666353 0.737632 2.16813
+2.55035 0.0190761 2.42443 2.55463
+2.25837 0.322448 2.89992 2.38089
+3.18276 -0.423511 3.92799 3.47529
+2.79248 0.835209 5.06721 3.82695
+2.8917 0.171918 0.697081 2.93785
+2.15363 -0.959935 4.55798 3.22748
+3.31647 0.143855 0.922859 3.35376
+4.51661 0.14588 0.799074 4.56689
+4.09954 0.070152 0.812529 4.112
+2.00714 0.680505 0.339074 2.494
+2.52326 0.887629 3.37555 3.587
+5.8979 -0.524386 3.8998 6.729
+2.52269 -0.573272 3.95502 2.952
+4.14557 -0.475385 4.05986 4.625
+4.51156 -0.524349 4.05986 5.148
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 4
+Jet: 0 pt: 25.8525 eta: -0.506436 phi: 3.98277
+Constituent: 53 pt: 5.59206 eta: -0.430157 phi: 4.22783
+Constituent: 393 pt: 4.14557 eta: -0.475385 phi: 4.05986
+Constituent: 394 pt: 4.51156 eta: -0.524349 phi: 4.05986
+Constituent: 168 pt: 3.18276 eta: -0.423511 phi: 3.92799
+Constituent: 378 pt: 5.8979 eta: -0.524386 phi: 3.8998
+Constituent: 386 pt: 2.52269 eta: -0.573272 phi: 3.95502
+Jet # 0 pt: 25.8525 eta: -0.506436 phi: 3.98277
+Jet has 6 constituents
+Constituent # 0 index: 53 charge: 1
+___Constituent 0 is track # 53 pt: 0.258397 eta: -0.763689 phi: 0.934699
+Constituent # 1 index: 168 charge: 1
+___Constituent 1 is track # 168 pt: 3.18276 eta: -0.423511 phi: 3.92799
+Constituent # 2 index: 378 charge: 0
+___Constituent 2 is tower # 378 Et: 5.89916 eta: -0.524386 phi: 3.8998
+Constituent # 3 index: 386 charge: 0
+___Constituent 3 is tower # 386 Et: 2.52552 eta: -0.573272 phi: 3.95502
+Constituent # 4 index: 393 charge: 0
+___Constituent 4 is tower # 393 Et: 4.14746 eta: -0.475385 phi: 4.05986
+Constituent # 5 index: 394 charge: 0
+___Constituent 5 is tower # 394 Et: 4.51322 eta: -0.524349 phi: 4.05986
+Jet: 1 pt: 24.4119 eta: -0.402167 phi: 1.25049
+Constituent: 16 pt: 4.19249 eta: -0.640663 phi: 1.54465
+Constituent: 10 pt: 10.062 eta: -0.425615 phi: 1.2235
+Constituent: 11 pt: 10.1574 eta: -0.35894 phi: 1.25191
+Jet # 1 pt: 24.4119 eta: -0.402167 phi: 1.25049
+Jet has 3 constituents
+Constituent # 0 index: 10 charge: 1
+___Constituent 0 is track # 10 pt: 2.02889 eta: -0.165194 phi: 0.378948
+Constituent # 1 index: 11 charge: -1
+___Constituent 1 is track # 11 pt: 1.87895 eta: -0.0885562 phi: 0.364893
+Constituent # 2 index: 16 charge: 1
+___Constituent 2 is track # 16 pt: 0.791675 eta: 0.267687 phi: 0.713779
+Jet: 2 pt: 19.1237 eta: 0.112692 phi: 0.802104
+Constituent: 6 pt: 2.14055 eta: -0.0243319 phi: 0.85099
+Constituent: 426 pt: 3.31647 eta: 0.143855 phi: 0.922859
+Constituent: 308 pt: 2.8917 eta: 0.171918 phi: 0.697081
+Constituent: 12 pt: 2.15884 eta: 0.0666353 phi: 0.737632
+Constituent: 442 pt: 4.51661 eta: 0.14588 phi: 0.799074
+Constituent: 16 pt: 4.09954 eta: 0.070152 phi: 0.812529
+Jet # 2 pt: 19.1237 eta: 0.112692 phi: 0.802104
+Jet has 6 constituents
+Constituent # 0 index: 6 charge: 1
+___Constituent 0 is track # 6 pt: 0.53831 eta: -0.594841 phi: 0.454487
+Constituent # 1 index: 12 charge: -1
+___Constituent 1 is track # 12 pt: 2.15884 eta: 0.0666353 phi: 0.737632
+Constituent # 2 index: 16 charge: 0
+___Constituent 2 is tower # 16 Et: 4.1019 eta: 0.070152 phi: 0.812529
+Constituent # 3 index: 308 charge: 1
+___Constituent 3 is track # 308 pt: 2.8917 eta: 0.171918 phi: 0.697081
+Constituent # 4 index: 426 charge: 1
+___Constituent 4 is track # 426 pt: 3.31647 eta: 0.143855 phi: 0.922859
+Constituent # 5 index: 442 charge: 1
+___Constituent 5 is track # 442 pt: 4.51661 eta: 0.14588 phi: 0.799074
+Jet: 3 pt: 12.9822 eta: -0.0240221 phi: 4.63476
+Constituent: 64 pt: 5.80185 eta: -0.192644 phi: 4.56499
+Constituent: 66 pt: 7.18036 eta: 0.0860499 phi: 4.68031
+Jet # 3 pt: 12.9822 eta: -0.0240221 phi: 4.63476
+Jet has 2 constituents
+Constituent # 0 index: 64 charge: 1
+___Constituent 0 is track # 64 pt: 0.367307 eta: -0.354719 phi: 2.13879
+Constituent # 1 index: 66 charge: -1
+___Constituent 1 is track # 66 pt: 0.622269 eta: -0.0445917 phi: 1.14849
+4 jets clustered, 4 jets stored.
+********** END StMyAnalysisMaker::runOverJets() done************
+StPicoMcTrack: 2 Pt: 4.4083 eta: 0.145641 phi: 0.798553
+TStarGenTrack:0 Pt: 4.4083 eta: 0.145641 phi: 0.798553
+StPicoMcTrack: 3 Pt: 11.9154 eta: 0.17965 phi: 0.805837
+TStarGenTrack:1 Pt: 11.9154 eta: 0.17965 phi: 0.805837
+StPicoMcTrack: 21 Pt: 2.85732 eta: 0.171449 phi: 0.696663
+TStarGenTrack:3 Pt: 2.85732 eta: 0.171449 phi: 0.696663
+StPicoMcTrack: 23 Pt: 3.3123 eta: 0.144389 phi: 0.922394
+TStarGenTrack:4 Pt: 3.3123 eta: 0.144389 phi: 0.922394
+StPicoMcTrack: 24 Pt: 2.16599 eta: 0.0658299 phi: 0.737576
+TStarGenTrack:5 Pt: 2.16599 eta: 0.0658299 phi: 0.737576
+StPicoMcTrack: 29 Pt: 3.08058 eta: -0.42473 phi: -2.35697
+TStarGenTrack:6 Pt: 3.08058 eta: -0.42473 phi: 3.92622
+StPicoMcTrack: 36 Pt: 11.5579 eta: -0.556434 phi: -2.31164
+TStarGenTrack:8 Pt: 11.5579 eta: -0.556434 phi: 3.97154
+StPicoMcTrack: 51 Pt: 5.44716 eta: -0.538662 phi: -2.36112
+TStarGenTrack:11 Pt: 5.44716 eta: -0.538662 phi: 3.92207
+StPicoMcTrack: 52 Pt: 2.57934 eta: -0.502655 phi: -2.36124
+TStarGenTrack:12 Pt: 2.57934 eta: -0.502655 phi: 3.92195
+StPicoMcTrack: 53 Pt: 4.6535 eta: -0.533048 phi: -2.24187
+TStarGenTrack:13 Pt: 4.6535 eta: -0.533048 phi: 4.04132
+StPicoMcTrack: 72 Pt: 5.7359 eta: 0.0850642 phi: 0.834702
+TStarGenTrack:21 Pt: 5.7359 eta: 0.0850642 phi: 0.834702
+StPicoMcTrack: 141 Pt: 5.14979 eta: -0.489384 phi: -2.22787
+TStarGenTrack:23 Pt: 5.14979 eta: -0.489384 phi: 4.05532
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+4.4083 0.145641 0.798553 4.45732
+11.9154 0.17965 0.805837 12.109
+2.85732 0.171449 0.696663 2.90278
+3.3123 0.144389 0.922394 3.3498
+2.16599 0.0658299 0.737576 2.17517
+3.08058 -0.42473 3.92622 3.36554
+11.5579 -0.556434 3.97154 13.4031
+5.44716 -0.538662 3.92207 6.25672
+2.57934 -0.502655 3.92195 2.91211
+4.6535 -0.533048 4.04132 5.33043
+5.7359 0.0850642 0.834702 5.75667
+5.14979 -0.489384 4.05532 5.77888
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 32.4683 eta: -0.546703 phi: 3.96929
+Constituent: 6 pt: 3.08058 eta: -0.42473 phi: 3.92622
+Constituent: 23 pt: 5.14979 eta: -0.489384 phi: 4.05532
+Constituent: 13 pt: 4.6535 eta: -0.533048 phi: 4.04132
+Constituent: 12 pt: 2.57934 eta: -0.502655 phi: 3.92195
+Constituent: 8 pt: 11.5579 eta: -0.556434 phi: 3.97154
+Constituent: 11 pt: 5.44716 eta: -0.538662 phi: 3.92207
+Gen Jet # 0 pt: 32.4683 eta: -0.546703 phi: 3.96929
+Gen Jet has 6 constituents
+___Constituent 0 is gen track # 6 pt: 3.08058 eta: -0.42473 phi: 3.92622
+___Constituent 1 is gen track # 8 pt: 11.5579 eta: -0.556434 phi: 3.97154
+___Constituent 2 is gen track # 11 pt: 5.44716 eta: -0.538662 phi: 3.92207
+___Constituent 3 is gen track # 12 pt: 2.57934 eta: -0.502655 phi: 3.92195
+___Constituent 4 is gen track # 13 pt: 4.6535 eta: -0.533048 phi: 4.04132
+___Constituent 5 is gen track # 23 pt: 5.14979 eta: -0.489384 phi: 4.05532
+Jet: 1 pt: 30.3952 eta: 0.164731 phi: 0.807988
+Constituent: 5 pt: 2.16599 eta: 0.0658299 phi: 0.737576
+Constituent: 4 pt: 3.3123 eta: 0.144389 phi: 0.922394
+Constituent: 3 pt: 2.85732 eta: 0.171449 phi: 0.696663
+Constituent: 21 pt: 5.7359 eta: 0.0850642 phi: 0.834702
+Constituent: 0 pt: 4.4083 eta: 0.145641 phi: 0.798553
+Constituent: 1 pt: 11.9154 eta: 0.17965 phi: 0.805837
+Gen Jet # 1 pt: 30.3952 eta: 0.164731 phi: 0.807988
+Gen Jet has 6 constituents
+___Constituent 0 is gen track # 0 pt: 4.4083 eta: 0.145641 phi: 0.798553
+___Constituent 1 is gen track # 1 pt: 11.9154 eta: 0.17965 phi: 0.805837
+___Constituent 2 is gen track # 3 pt: 2.85732 eta: 0.171449 phi: 0.696663
+___Constituent 3 is gen track # 4 pt: 3.3123 eta: 0.144389 phi: 0.922394
+___Constituent 4 is gen track # 5 pt: 2.16599 eta: 0.0658299 phi: 0.737576
+___Constituent 5 is gen track # 21 pt: 5.7359 eta: 0.0850642 phi: 0.834702
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 147 pt: 5.0831 eta: 0.380736 phi: 1.15085 charge: -1
+TStarTrack: 4 pt: 5.0831 eta: 0.380736 phi: 1.15085 charge: -1
+StPicoTrack: 555 pt: 7.02183 eta: -0.561858 phi: -1.99368 charge: 1
+TStarTrack: 22 pt: 7.02183 eta: -0.561858 phi: 4.28951 charge: 1
+StPicoTrack: 1060 pt: 8.15872 eta: 0.47748 phi: 1.17561 charge: -1
+TStarTrack: 36 pt: 8.15872 eta: 0.47748 phi: 1.17561 charge: -1
+StPicoTrack: 2603 pt: 2.6485 eta: -0.0915629 phi: -2.51524 charge: 1
+TStarTrack: 61 pt: 2.6485 eta: -0.0915629 phi: 3.76794 charge: 1
+StPicoMcTrack: 16 Pt: 9.56972 eta: 0.477454 phi: 1.17327
+TStarGenTrack:5 Pt: 9.56972 eta: 0.477454 phi: 1.17327
+StPicoMcTrack: 28 Pt: 7.26076 eta: -0.561972 phi: -1.99324
+TStarGenTrack:6 Pt: 7.26076 eta: -0.561972 phi: 4.28994
+StPicoMcTrack: 30 Pt: 2.32681 eta: -0.526765 phi: -1.95386
+TStarGenTrack:7 Pt: 2.32681 eta: -0.526765 phi: 4.32932
+StPicoMcTrack: 31 Pt: 16.6477 eta: -0.523056 phi: -2.00077
+TStarGenTrack:8 Pt: 16.6477 eta: -0.523056 phi: 4.28241
+StPicoMcTrack: 43 Pt: 3.34836 eta: 0.61814 phi: 1.19538
+TStarGenTrack:13 Pt: 3.34836 eta: 0.61814 phi: 1.19538
+StPicoMcTrack: 45 Pt: 5.27163 eta: 0.381792 phi: 1.14828
+TStarGenTrack:14 Pt: 5.27163 eta: 0.381792 phi: 1.14828
+StPicoMcTrack: 117 Pt: 4.92182 eta: -0.567689 phi: -1.98957
+TStarGenTrack:26 Pt: 4.92182 eta: -0.567689 phi: 4.29362
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+9.56972 0.477454 1.17327 10.7225
+7.26076 -0.561972 4.28994 8.48978
+2.32681 -0.526765 4.32932 2.66083
+16.6477 -0.523056 4.28241 18.9779
+3.34836 0.61814 1.19538 4.11703
+5.27163 0.381792 1.14828 5.66225
+4.92182 -0.567689 4.29362 5.73642
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 31.1571 eta: -0.536172 phi: 4.28573
+Constituent: 7 pt: 2.32681 eta: -0.526765 phi: 4.32932
+Constituent: 8 pt: 16.6477 eta: -0.523056 phi: 4.28241
+Constituent: 6 pt: 7.26076 eta: -0.561972 phi: 4.28994
+Constituent: 26 pt: 4.92182 eta: -0.567689 phi: 4.29362
+Gen Jet # 0 pt: 31.1571 eta: -0.536172 phi: 4.28573
+Gen Jet has 4 constituents
+___Constituent 0 is gen track # 6 pt: 7.26076 eta: -0.561972 phi: 4.28994
+___Constituent 1 is gen track # 7 pt: 2.32681 eta: -0.526765 phi: 4.32932
+___Constituent 2 is gen track # 8 pt: 16.6477 eta: -0.523056 phi: 4.28241
+___Constituent 3 is gen track # 26 pt: 4.92182 eta: -0.567689 phi: 4.29362
+Jet: 1 pt: 18.1897 eta: 0.460506 phi: 1.16881
+Constituent: 13 pt: 3.34836 eta: 0.61814 phi: 1.19538
+Constituent: 5 pt: 9.56972 eta: 0.477454 phi: 1.17327
+Constituent: 14 pt: 5.27163 eta: 0.381792 phi: 1.14828
+Gen Jet # 1 pt: 18.1897 eta: 0.460506 phi: 1.16881
+Gen Jet has 3 constituents
+___Constituent 0 is gen track # 5 pt: 9.56972 eta: 0.477454 phi: 1.17327
+___Constituent 1 is gen track # 13 pt: 3.34836 eta: 0.61814 phi: 1.19538
+___Constituent 2 is gen track # 14 pt: 5.27163 eta: 0.381792 phi: 1.14828
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 19 pt: 10.6395 eta: -0.128598 phi: 0.469947 charge: -1
+TStarTrack: 10 pt: 10.6395 eta: -0.128598 phi: 0.469947 charge: -1
+StPicoTrack: 30 pt: 2.31576 eta: 0.169995 phi: 0.442994 charge: 1
+TStarTrack: 16 pt: 2.31576 eta: 0.169995 phi: 0.442994 charge: 1
+StPicoTrack: 68 pt: 2.45717 eta: 0.213044 phi: 0.769559 charge: 1
+TStarTrack: 34 pt: 2.45717 eta: 0.213044 phi: 0.769559 charge: 1
+StPicoTrack: 224 pt: 4.52663 eta: -0.0118256 phi: -2.99216 charge: -1
+TStarTrack: 106 pt: 4.52663 eta: -0.0118256 phi: 3.29103 charge: -1
+StPicoTrack: 227 pt: 2.00885 eta: 0.110705 phi: -2.97845 charge: 1
+TStarTrack: 108 pt: 2.00885 eta: 0.110705 phi: 3.30474 charge: 1
+StPicoTrack: 232 pt: 5.20176 eta: 0.262489 phi: -3.02764 charge: 1
+TStarTrack: 111 pt: 5.20176 eta: 0.262489 phi: 3.25554 charge: 1
+StPicoTrack: 260 pt: 5.17281 eta: -0.44252 phi: -2.658 charge: -1
+TStarTrack: 121 pt: 5.17281 eta: -0.44252 phi: 3.62519 charge: -1
+StPicoTrack: 370 pt: 2.05322 eta: 0.183854 phi: -1.01442 charge: -1
+TStarTrack: 176 pt: 2.05322 eta: 0.183854 phi: 5.26876 charge: -1
+StPicoTrack: 444 pt: 2.21049 eta: 0.196606 phi: -0.0420686 charge: 1
+TStarTrack: 209 pt: 2.21049 eta: 0.196606 phi: 6.24112 charge: 1
+StPicoTrack: 558 pt: 2.46446 eta: -0.405942 phi: -2.33224 charge: 1
+TStarTrack: 249 pt: 2.46446 eta: -0.405942 phi: 3.95094 charge: 1
+StPicoTrack: 599 pt: 2.16788 eta: 0.235284 phi: -3.11974 charge: 1
+TStarTrack: 262 pt: 2.16788 eta: 0.235284 phi: 3.16344 charge: 1
+StPicoTower: 3204 Et: 3.06058 eta: -0.281905 phi: -2.32968
+TStarTower:208 Pt: 3.05764 eta: -0.281905 phi: 3.95351
+StPicoTower: 4281 Et: 12.9066 eta: -0.133026 phi: 0.500158
+TStarTower:293 Pt: 12.9059 eta: -0.133026 phi: 0.500158
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+5.0831 0.380736 1.15085 5.45778
+7.02183 -0.561858 4.28951 8.16084
+8.15872 0.47748 1.17561 9.10764
+2.6485 -0.0915629 3.76794 2.66327
+10.6395 -0.128598 0.469947 10.7285
+2.31576 0.169995 0.442994 2.35344
+2.45717 0.213044 0.769559 2.51701
+4.52663 -0.0118256 3.29103 4.52909
+2.00885 0.110705 3.30474 2.02599
+5.20176 0.262489 3.25554 5.38381
+5.17281 -0.44252 3.62519 5.68933
+2.05322 0.183854 5.26876 2.09268
+2.21049 0.196606 6.24112 2.25767
+2.46446 -0.405942 3.95094 2.67397
+2.16788 0.235284 3.16344 2.23253
+3.05764 -0.281905 3.95351 3.183
+12.9059 -0.133026 0.500158 13.021
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 4
+Jet: 0 pt: 25.8612 eta: -0.128342 phi: 0.487503
+Constituent: 16 pt: 2.31576 eta: 0.169995 phi: 0.442994
+Constituent: 10 pt: 10.6395 eta: -0.128598 phi: 0.469947
+Constituent: 293 pt: 12.9059 eta: -0.133026 phi: 0.500158
+Jet # 0 pt: 25.8612 eta: -0.128342 phi: 0.487503
+Jet has 3 constituents
+Constituent # 0 index: 10 charge: -1
+___Constituent 0 is track # 10 pt: 10.6395 eta: -0.128598 phi: 0.469947
+Constituent # 1 index: 16 charge: 1
+___Constituent 1 is track # 16 pt: 2.31576 eta: 0.169995 phi: 0.442994
+Constituent # 2 index: 293 charge: 0
+___Constituent 2 is tower # 293 Et: 12.9066 eta: -0.133026 phi: 0.500158
+Jet: 1 pt: 13.9051 eta: 0.198978 phi: 3.25472
+Constituent: 106 pt: 4.52663 eta: -0.0118256 phi: 3.29103
+Constituent: 108 pt: 2.00885 eta: 0.110705 phi: 3.30474
+Constituent: 111 pt: 5.20176 eta: 0.262489 phi: 3.25554
+Constituent: 262 pt: 2.16788 eta: 0.235284 phi: 3.16344
+Jet # 1 pt: 13.9051 eta: 0.198978 phi: 3.25472
+Jet has 4 constituents
+Constituent # 0 index: 106 charge: -1
+___Constituent 0 is track # 106 pt: 4.52663 eta: -0.0118256 phi: 3.29103
+Constituent # 1 index: 108 charge: 1
+___Constituent 1 is track # 108 pt: 2.00885 eta: 0.110705 phi: 3.30474
+Constituent # 2 index: 111 charge: 1
+___Constituent 2 is track # 111 pt: 5.20176 eta: 0.262489 phi: 3.25554
+Constituent # 3 index: 262 charge: 1
+___Constituent 3 is track # 262 pt: 2.16788 eta: 0.235284 phi: 3.16344
+Jet: 2 pt: 13.3434 eta: -0.330498 phi: 3.8342
+Constituent: 121 pt: 5.17281 eta: -0.44252 phi: 3.62519
+Constituent: 61 pt: 2.6485 eta: -0.0915629 phi: 3.76794
+Constituent: 249 pt: 2.46446 eta: -0.405942 phi: 3.95094
+Constituent: 208 pt: 3.05764 eta: -0.281905 phi: 3.95351
+Jet # 2 pt: 13.3434 eta: -0.330498 phi: 3.8342
+Jet has 4 constituents
+Constituent # 0 index: 61 charge: 1
+___Constituent 0 is track # 61 pt: 0.253125 eta: 0.805484 phi: 1.96921
+Constituent # 1 index: 121 charge: -1
+___Constituent 1 is track # 121 pt: 5.17281 eta: -0.44252 phi: 3.62519
+Constituent # 2 index: 208 charge: 0
+___Constituent 2 is tower # 208 Et: 3.06058 eta: -0.281905 phi: 3.95351
+Constituent # 3 index: 249 charge: 1
+___Constituent 3 is track # 249 pt: 2.46446 eta: -0.405942 phi: 3.95094
+Jet: 3 pt: 13.2418 eta: 0.450343 phi: 1.16869
+Constituent: 4 pt: 5.0831 eta: 0.380736 phi: 1.15085
+Constituent: 36 pt: 8.15872 eta: 0.47748 phi: 1.17561
+Jet # 3 pt: 13.2418 eta: 0.450343 phi: 1.16869
+Jet has 2 constituents
+Constituent # 0 index: 4 charge: -1
+___Constituent 0 is track # 4 pt: 0.441129 eta: -0.411121 phi: 0.0332114
+Constituent # 1 index: 36 charge: -1
+___Constituent 1 is track # 36 pt: 0.477653 eta: 0.281599 phi: 1.14025
+4 jets clustered, 4 jets stored.
+********** END StMyAnalysisMaker::runOverJets() done************
+StPicoMcTrack: 10 Pt: 2.21894 eta: 0.197085 phi: -0.0420041
+TStarGenTrack:2 Pt: 2.21894 eta: 0.197085 phi: 6.24118
+StPicoMcTrack: 15 Pt: 2.50598 eta: -0.403495 phi: -2.33221
+TStarGenTrack:3 Pt: 2.50598 eta: -0.403495 phi: 3.95097
+StPicoMcTrack: 19 Pt: 2.35365 eta: 0.170322 phi: 0.442408
+TStarGenTrack:4 Pt: 2.35365 eta: 0.170322 phi: 0.442408
+StPicoMcTrack: 20 Pt: 10.779 eta: -0.128956 phi: 0.469994
+TStarGenTrack:5 Pt: 10.779 eta: -0.128956 phi: 0.469994
+StPicoMcTrack: 49 Pt: 4.571 eta: -0.0113747 phi: -2.99202
+TStarGenTrack:9 Pt: 4.571 eta: -0.0113747 phi: 3.29117
+StPicoMcTrack: 50 Pt: 2.18657 eta: 0.234984 phi: -3.11901
+TStarGenTrack:10 Pt: 2.18657 eta: 0.234984 phi: 3.16417
+StPicoMcTrack: 51 Pt: 5.18032 eta: 0.262877 phi: -3.02749
+TStarGenTrack:11 Pt: 5.18032 eta: 0.262877 phi: 3.25569
+StPicoMcTrack: 80 Pt: 5.11423 eta: -0.443419 phi: -2.65787
+TStarGenTrack:15 Pt: 5.11423 eta: -0.443419 phi: 3.62531
+StPicoMcTrack: 207 Pt: 6.49468 eta: -0.131243 phi: 0.512997
+TStarGenTrack:24 Pt: 6.49468 eta: -0.131243 phi: 0.512997
+StPicoMcTrack: 208 Pt: 5.94071 eta: -0.13049 phi: 0.49128
+TStarGenTrack:25 Pt: 5.94071 eta: -0.13049 phi: 0.49128
+StPicoMcTrack: 220 Pt: 2.10639 eta: 0.279012 phi: -2.80563
+TStarGenTrack:31 Pt: 2.10639 eta: 0.279012 phi: 3.47755
+StPicoMcTrack: 281 Pt: 2.38273 eta: -0.318707 phi: -2.49485
+TStarGenTrack:37 Pt: 2.38273 eta: -0.318707 phi: 3.78834
+StPicoMcTrack: 283 Pt: 3.32799 eta: -0.26118 phi: -2.33647
+TStarGenTrack:39 Pt: 3.32799 eta: -0.26118 phi: 3.94672
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+2.21894 0.197085 6.24118 2.26647
+2.50598 -0.403495 3.95097 2.75732
+2.35365 0.170322 0.442408 2.39194
+10.779 -0.128956 0.469994 10.8696
+4.571 -0.0113747 3.29117 4.59788
+2.18657 0.234984 3.16417 2.25154
+5.18032 0.262877 3.25569 5.36216
+5.11423 -0.443419 3.62531 5.62704
+6.49468 -0.131243 0.512997 6.55069
+5.94071 -0.13049 0.49128 5.99136
+2.10639 0.279012 3.47755 2.18891
+2.38273 -0.318707 3.78834 2.50477
+3.32799 -0.26118 3.94672 3.44214
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 3
+Jet: 0 pt: 25.568 eta: -0.126511 phi: 0.479559
+Constituent: 4 pt: 2.35365 eta: 0.170322 phi: 0.442408
+Constituent: 24 pt: 6.49468 eta: -0.131243 phi: 0.512997
+Constituent: 5 pt: 10.779 eta: -0.128956 phi: 0.469994
+Constituent: 25 pt: 5.94071 eta: -0.13049 phi: 0.49128
+Gen Jet # 0 pt: 25.568 eta: -0.126511 phi: 0.479559
+Gen Jet has 4 constituents
+___Constituent 0 is gen track # 4 pt: 2.35365 eta: 0.170322 phi: 0.442408
+___Constituent 1 is gen track # 5 pt: 10.779 eta: -0.128956 phi: 0.469994
+___Constituent 2 is gen track # 24 pt: 6.49468 eta: -0.131243 phi: 0.512997
+___Constituent 3 is gen track # 25 pt: 5.94071 eta: -0.13049 phi: 0.49128
+Jet: 1 pt: 14.0443 eta: 0.20881 phi: 3.26561
+Constituent: 9 pt: 4.571 eta: -0.0113747 phi: 3.29117
+Constituent: 31 pt: 2.10639 eta: 0.279012 phi: 3.47755
+Constituent: 10 pt: 2.18657 eta: 0.234984 phi: 3.16417
+Constituent: 11 pt: 5.18032 eta: 0.262877 phi: 3.25569
+Gen Jet # 1 pt: 14.0443 eta: 0.20881 phi: 3.26561
+Gen Jet has 4 constituents
+___Constituent 0 is gen track # 9 pt: 4.571 eta: -0.0113747 phi: 3.29117
+___Constituent 1 is gen track # 10 pt: 2.18657 eta: 0.234984 phi: 3.16417
+___Constituent 2 is gen track # 11 pt: 5.18032 eta: 0.262877 phi: 3.25569
+___Constituent 3 is gen track # 31 pt: 2.10639 eta: 0.279012 phi: 3.47755
+Jet: 2 pt: 13.3309 eta: -0.402874 phi: 3.71036
+Constituent: 39 pt: 3.32799 eta: -0.26118 phi: 3.94672
+Constituent: 3 pt: 2.50598 eta: -0.403495 phi: 3.95097
+Constituent: 15 pt: 5.11423 eta: -0.443419 phi: 3.62531
+Constituent: 37 pt: 2.38273 eta: -0.318707 phi: 3.78834
+Gen Jet # 2 pt: 13.3309 eta: -0.402874 phi: 3.71036
+Gen Jet has 4 constituents
+___Constituent 0 is gen track # 3 pt: 2.50598 eta: -0.403495 phi: 3.95097
+___Constituent 1 is gen track # 15 pt: 5.11423 eta: -0.443419 phi: 3.62531
+___Constituent 2 is gen track # 37 pt: 2.38273 eta: -0.318707 phi: 3.78834
+___Constituent 3 is gen track # 39 pt: 3.32799 eta: -0.26118 phi: 3.94672
+3 gen jets clustered, 3 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 1 pt: 3.74024 eta: -0.539945 phi: 0.382803 charge: 1
+TStarTrack: 1 pt: 3.74024 eta: -0.539945 phi: 0.382803 charge: 1
+StPicoTrack: 3 pt: 5.70146 eta: -0.381918 phi: 0.478301 charge: 1
+TStarTrack: 3 pt: 5.70146 eta: -0.381918 phi: 0.478301 charge: 1
+StPicoTrack: 7 pt: 6.08807 eta: -0.220339 phi: 0.530653 charge: -1
+TStarTrack: 4 pt: 6.08807 eta: -0.220339 phi: 0.530653 charge: -1
+StPicoTower: 1448 Et: 3.55735 eta: 0.40085 phi: -2.48982
+TStarTower:20 Pt: 3.55501 eta: 0.40085 phi: 3.79337
+StPicoMcTrack: 18 Pt: 5.63322 eta: -0.382173 phi: 0.478746
+TStarGenTrack:1 Pt: 5.63322 eta: -0.382173 phi: 0.478746
+StPicoMcTrack: 19 Pt: 6.13556 eta: -0.221633 phi: 0.530578
+TStarGenTrack:2 Pt: 6.13556 eta: -0.221633 phi: 0.530578
+StPicoMcTrack: 29 Pt: 3.06243 eta: 0.487325 phi: 2.39156
+TStarGenTrack:6 Pt: 3.06243 eta: 0.487325 phi: 2.39156
+StPicoMcTrack: 59 Pt: 7.70658 eta: 0.391052 phi: -2.5284
+TStarGenTrack:13 Pt: 7.70658 eta: 0.391052 phi: 3.75479
+StPicoMcTrack: 60 Pt: 3.51978 eta: 0.256284 phi: -2.53605
+TStarGenTrack:14 Pt: 3.51978 eta: 0.256284 phi: 3.74714
+StPicoMcTrack: 72 Pt: 3.18779 eta: -0.511387 phi: 0.540541
+TStarGenTrack:15 Pt: 3.18779 eta: -0.511387 phi: 0.540541
+StPicoMcTrack: 240 Pt: 6.67672 eta: 0.368804 phi: -2.49527
+TStarGenTrack:49 Pt: 6.67672 eta: 0.368804 phi: 3.78791
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+5.63322 -0.382173 0.478746 6.05124
+6.13556 -0.221633 0.530578 6.28842
+3.06243 0.487325 2.39156 3.46864
+7.70658 0.391052 3.75479 8.30455
+3.51978 0.256284 3.74714 3.63868
+3.18779 -0.511387 0.540541 3.73392
+6.67672 0.368804 3.78791 7.13596
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 17.9031 eta: 0.374393 phi: 3.76776
+Constituent: 14 pt: 3.51978 eta: 0.256284 phi: 3.74714
+Constituent: 13 pt: 7.70658 eta: 0.391052 phi: 3.75479
+Constituent: 49 pt: 6.67672 eta: 0.368804 phi: 3.78791
+Gen Jet # 0 pt: 17.9031 eta: 0.374393 phi: 3.76776
+Gen Jet has 3 constituents
+___Constituent 0 is gen track # 13 pt: 7.70658 eta: 0.391052 phi: 3.75479
+___Constituent 1 is gen track # 14 pt: 3.51978 eta: 0.256284 phi: 3.74714
+___Constituent 2 is gen track # 49 pt: 6.67672 eta: 0.368804 phi: 3.78791
+Jet: 1 pt: 14.9566 eta: -0.347719 phi: 0.505748
+Constituent: 2 pt: 6.13556 eta: -0.221633 phi: 0.530578
+Constituent: 1 pt: 5.63322 eta: -0.382173 phi: 0.478746
+Constituent: 15 pt: 3.18779 eta: -0.511387 phi: 0.540541
+Gen Jet # 1 pt: 14.9566 eta: -0.347719 phi: 0.505748
+Gen Jet has 3 constituents
+___Constituent 0 is gen track # 1 pt: 5.63322 eta: -0.382173 phi: 0.478746
+___Constituent 1 is gen track # 2 pt: 6.13556 eta: -0.221633 phi: 0.530578
+___Constituent 2 is gen track # 15 pt: 3.18779 eta: -0.511387 phi: 0.540541
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 9 pt: 2.17641 eta: -0.489651 phi: 0.438025 charge: -1
+TStarTrack: 0 pt: 2.17641 eta: -0.489651 phi: 0.438025 charge: -1
+StPicoTrack: 11 pt: 5.16987 eta: -0.444757 phi: 0.558261 charge: 1
+TStarTrack: 1 pt: 5.16987 eta: -0.444757 phi: 0.558261 charge: 1
+StPicoTrack: 12 pt: 3.74436 eta: -0.398111 phi: 0.55413 charge: -1
+TStarTrack: 2 pt: 3.74436 eta: -0.398111 phi: 0.55413 charge: -1
+StPicoTrack: 545 pt: 4.05606 eta: -0.849052 phi: -2.31186 charge: 1
+TStarTrack: 57 pt: 4.05606 eta: -0.849052 phi: 3.97133 charge: 1
+StPicoTrack: 715 pt: 2.93612 eta: -0.717018 phi: -2.47689 charge: -1
+TStarTrack: 68 pt: 2.93612 eta: -0.717018 phi: 3.8063 charge: -1
+StPicoTower: 3214 Et: 4.16218 eta: -0.750961 phi: -2.32921
+TStarTower:34 Pt: 4.16079 eta: -0.750961 phi: 3.95398
+StPicoTower: 3215 Et: 2.66072 eta: -0.800193 phi: -2.32921
+TStarTower:35 Pt: 2.65868 eta: -0.800193 phi: 3.95398
+StPicoTower: 4348 Et: 2.40909 eta: -0.454301 phi: 0.653836
+TStarTower:58 Pt: 2.40578 eta: -0.454301 phi: 0.653836
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+3.74024 -0.539945 0.382803 4.30109
+5.70146 -0.381918 0.478301 6.12394
+6.08807 -0.220339 0.530653 6.23802
+3.55501 0.40085 3.79337 3.847
+2.17641 -0.489651 0.438025 2.44656
+5.16987 -0.444757 0.558261 5.69139
+3.74436 -0.398111 0.55413 4.04743
+4.05606 -0.849052 3.97133 5.60974
+2.93612 -0.717018 3.8063 3.72639
+4.16079 -0.750961 3.95398 5.392
+2.65868 -0.800193 3.95398 3.559
+2.40578 -0.454301 0.653836 2.662
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 1
+Jet: 0 pt: 29.0262 eta: -0.408514 phi: 0.528981
+Constituent: 4 pt: 6.08807 eta: -0.220339 phi: 0.530653
+Constituent: 1 pt: 3.74024 eta: -0.539945 phi: 0.382803
+Constituent: 58 pt: 2.40578 eta: -0.454301 phi: 0.653836
+Constituent: 0 pt: 2.17641 eta: -0.489651 phi: 0.438025
+Constituent: 3 pt: 5.70146 eta: -0.381918 phi: 0.478301
+Constituent: 1 pt: 5.16987 eta: -0.444757 phi: 0.558261
+Constituent: 2 pt: 3.74436 eta: -0.398111 phi: 0.55413
+Jet # 0 pt: 29.0262 eta: -0.408514 phi: 0.528981
+Jet has 7 constituents
+Constituent # 0 index: 0 charge: -1
+___Constituent 0 is track # 0 pt: 2.17641 eta: -0.489651 phi: 0.438025
+Constituent # 1 index: 1 charge: 1
+___Constituent 1 is track # 1 pt: 5.16987 eta: -0.444757 phi: 0.558261
+Constituent # 2 index: 1 charge: 1
+___Constituent 2 is track # 1 pt: 5.16987 eta: -0.444757 phi: 0.558261
+Constituent # 3 index: 2 charge: -1
+___Constituent 3 is track # 2 pt: 3.74436 eta: -0.398111 phi: 0.55413
+Constituent # 4 index: 3 charge: 1
+___Constituent 4 is track # 3 pt: 1.55445 eta: -0.339284 phi: 0.40782
+Constituent # 5 index: 4 charge: -1
+___Constituent 5 is track # 4 pt: 1.4442 eta: -0.0925973 phi: 0.705223
+Constituent # 6 index: 58 charge: 0
+___Constituent 6 is tower # 58 Et: 2.40909 eta: -0.454301 phi: 0.653836
+1 jets clustered, 1 jets stored.
+********** END StMyAnalysisMaker::runOverJets() done************
+StPicoMcTrack: 14 Pt: 5.33269 eta: -0.445317 phi: 0.559141
+TStarGenTrack:2 Pt: 5.33269 eta: -0.445317 phi: 0.559141
+StPicoMcTrack: 15 Pt: 3.68428 eta: -0.397724 phi: 0.553561
+TStarGenTrack:3 Pt: 3.68428 eta: -0.397724 phi: 0.553561
+StPicoMcTrack: 23 Pt: 2.96171 eta: -0.717421 phi: -2.4763
+TStarGenTrack:7 Pt: 2.96171 eta: -0.717421 phi: 3.80689
+StPicoMcTrack: 49 Pt: 2.22036 eta: -0.460063 phi: 0.442252
+TStarGenTrack:11 Pt: 2.22036 eta: -0.460063 phi: 0.442252
+StPicoMcTrack: 64 Pt: 4.05431 eta: -0.849961 phi: -2.31191
+TStarGenTrack:12 Pt: 4.05431 eta: -0.849961 phi: 3.97128
+StPicoMcTrack: 65 Pt: 2.78766 eta: -0.778531 phi: -2.37837
+TStarGenTrack:13 Pt: 2.78766 eta: -0.778531 phi: 3.90482
+StPicoMcTrack: 158 Pt: 2.50995 eta: -0.45202 phi: 0.655985
+TStarGenTrack:29 Pt: 2.50995 eta: -0.45202 phi: 0.655985
+StPicoMcTrack: 159 Pt: 2.94044 eta: -0.469326 phi: 0.609408
+TStarGenTrack:30 Pt: 2.94044 eta: -0.469326 phi: 0.609408
+StPicoMcTrack: 173 Pt: 2.07107 eta: 0.469502 phi: 1.91908
+TStarGenTrack:33 Pt: 2.07107 eta: 0.469502 phi: 1.91908
+StPicoMcTrack: 218 Pt: 5.59616 eta: -0.751059 phi: -2.16116
+TStarGenTrack:39 Pt: 5.59616 eta: -0.751059 phi: 4.12202
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+5.33269 -0.445317 0.559141 5.89097
+3.68428 -0.397724 0.553561 3.98198
+2.96171 -0.717421 3.80689 3.78945
+2.22036 -0.460063 0.442252 2.46347
+4.05431 -0.849961 3.97128 5.68705
+2.78766 -0.778531 3.90482 3.67867
+2.50995 -0.45202 0.655985 2.77077
+2.94044 -0.469326 0.609408 3.27027
+2.07107 0.469502 1.91908 2.30778
+5.59616 -0.751059 4.12202 7.31059
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 1
+Jet: 0 pt: 16.6877 eta: -0.433973 phi: 0.56344
+Constituent: 11 pt: 2.22036 eta: -0.460063 phi: 0.442252
+Constituent: 29 pt: 2.50995 eta: -0.45202 phi: 0.655985
+Constituent: 30 pt: 2.94044 eta: -0.469326 phi: 0.609408
+Constituent: 2 pt: 5.33269 eta: -0.445317 phi: 0.559141
+Constituent: 3 pt: 3.68428 eta: -0.397724 phi: 0.553561
+Gen Jet # 0 pt: 16.6877 eta: -0.433973 phi: 0.56344
+Gen Jet has 5 constituents
+___Constituent 0 is gen track # 2 pt: 5.33269 eta: -0.445317 phi: 0.559141
+___Constituent 1 is gen track # 3 pt: 3.68428 eta: -0.397724 phi: 0.553561
+___Constituent 2 is gen track # 11 pt: 2.22036 eta: -0.460063 phi: 0.442252
+___Constituent 3 is gen track # 29 pt: 2.50995 eta: -0.45202 phi: 0.655985
+___Constituent 4 is gen track # 30 pt: 2.94044 eta: -0.469326 phi: 0.609408
+1 gen jets clustered, 1 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 1470 pt: 5.10877 eta: 0.886027 phi: -1.0469 charge: -1
+TStarTrack: 86 pt: 5.10877 eta: 0.886027 phi: 5.23629 charge: -1
+StPicoTrack: 2202 pt: 2.13686 eta: 0.41139 phi: 0.14351 charge: -1
+TStarTrack: 109 pt: 2.13686 eta: 0.41139 phi: 0.14351 charge: -1
+StPicoMcTrack: 19 Pt: 3.51273 eta: 0.999623 phi: -1.19191
+TStarGenTrack:2 Pt: 3.51273 eta: 0.999623 phi: 5.09127
+StPicoMcTrack: 48 Pt: 5.01438 eta: 0.886736 phi: -1.04696
+TStarGenTrack:6 Pt: 5.01438 eta: 0.886736 phi: 5.23623
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+3.51273 0.999623 5.09127 5.42067
+5.01438 0.886736 5.23623 7.11976
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 89 pt: 2.28062 eta: -0.28673 phi: -0.677031 charge: -1
+TStarTrack: 40 pt: 2.28062 eta: -0.28673 phi: 5.60615 charge: -1
+StPicoTrack: 107 pt: 9.8827 eta: 0.931789 phi: 0.834085 charge: -1
+TStarTrack: 53 pt: 9.8827 eta: 0.931789 phi: 0.834085 charge: -1
+StPicoTrack: 139 pt: 4.76414 eta: 0.973039 phi: 0.802813 charge: 1
+TStarTrack: 66 pt: 4.76414 eta: 0.973039 phi: 0.802813 charge: 1
+StPicoTower: 3221 Et: 8.97919 eta: -0.0417101 phi: -2.28025
+TStarTower:45 Pt: 8.97811 eta: -0.0417101 phi: 4.00294
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+5.10877 0.886027 5.23629 7.25009
+2.13686 0.41139 0.14351 2.32445
+2.28062 -0.28673 5.60615 2.37911
+9.8827 0.931789 0.834085 14.4931
+4.76414 0.973039 0.802813 7.20451
+8.97811 -0.0417101 4.00294 8.987
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 0
+StPicoMcTrack: 2 Pt: 8.12871 eta: 0.0205496 phi: -2.35335
+TStarGenTrack:0 Pt: 8.12871 eta: 0.0205496 phi: 3.92983
+StPicoMcTrack: 17 Pt: 6.19872 eta: -0.140245 phi: -2.35872
+TStarGenTrack:4 Pt: 6.19872 eta: -0.140245 phi: 3.92446
+StPicoMcTrack: 42 Pt: 4.77653 eta: 0.973034 phi: 0.803312
+TStarGenTrack:10 Pt: 4.77653 eta: 0.973034 phi: 0.803312
+StPicoMcTrack: 43 Pt: 9.54151 eta: 0.931757 phi: 0.834353
+TStarGenTrack:11 Pt: 9.54151 eta: 0.931757 phi: 0.834353
+StPicoMcTrack: 95 Pt: 4.27969 eta: -0.0598504 phi: -2.29224
+TStarGenTrack:20 Pt: 4.27969 eta: -0.0598504 phi: 3.99094
+StPicoMcTrack: 96 Pt: 5.63071 eta: -0.0326081 phi: -2.29596
+TStarGenTrack:21 Pt: 5.63071 eta: -0.0326081 phi: 3.98722
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+8.12871 0.0205496 3.92983 8.13162
+6.19872 -0.140245 3.92446 6.26134
+4.77653 0.973034 0.803312 7.22321
+9.54151 0.931757 0.834353 13.9925
+4.27969 -0.0598504 3.99094 4.28735
+5.63071 -0.0326081 3.98722 5.63371
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 1
+Jet: 0 pt: 24.2378 eta: -0.0301849 phi: 3.96068
+Constituent: 4 pt: 6.19872 eta: -0.140245 phi: 3.92446
+Constituent: 0 pt: 8.12871 eta: 0.0205496 phi: 3.92983
+Constituent: 20 pt: 4.27969 eta: -0.0598504 phi: 3.99094
+Constituent: 21 pt: 5.63071 eta: -0.0326081 phi: 3.98722
+Gen Jet # 0 pt: 24.2378 eta: -0.0301849 phi: 3.96068
+Gen Jet has 4 constituents
+___Constituent 0 is gen track # 0 pt: 8.12871 eta: 0.0205496 phi: 3.92983
+___Constituent 1 is gen track # 4 pt: 6.19872 eta: -0.140245 phi: 3.92446
+___Constituent 2 is gen track # 20 pt: 4.27969 eta: -0.0598504 phi: 3.99094
+___Constituent 3 is gen track # 21 pt: 5.63071 eta: -0.0326081 phi: 3.98722
+1 gen jets clustered, 1 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 6 pt: 7.25028 eta: -0.446999 phi: 0.653568 charge: -1
+TStarTrack: 2 pt: 7.25028 eta: -0.446999 phi: 0.653568 charge: -1
+StPicoMcTrack: 24 Pt: 7.01837 eta: -0.447063 phi: 0.654348
+TStarGenTrack:8 Pt: 7.01837 eta: -0.447063 phi: 0.654348
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+7.01837 -0.447063 0.654348 7.78821
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 27 pt: 3.15636 eta: 0.0990255 phi: 0.545295 charge: -1
+TStarTrack: 14 pt: 3.15636 eta: 0.0990255 phi: 0.545295 charge: -1
+StPicoTrack: 244 pt: 2.71321 eta: 0.191155 phi: -2.91347 charge: -1
+TStarTrack: 124 pt: 2.71321 eta: 0.191155 phi: 3.36971 charge: -1
+StPicoTrack: 285 pt: 2.36537 eta: 0.23017 phi: -2.53466 charge: -1
+TStarTrack: 142 pt: 2.36537 eta: 0.23017 phi: 3.74853 charge: -1
+StPicoTrack: 308 pt: 2.26649 eta: -0.801396 phi: -2.2111 charge: 1
+TStarTrack: 149 pt: 2.26649 eta: -0.801396 phi: 4.07209 charge: 1
+StPicoTrack: 397 pt: 2.30327 eta: 0.610132 phi: -1.77661 charge: 1
+TStarTrack: 193 pt: 2.30327 eta: 0.610132 phi: 4.50657 charge: 1
+StPicoTrack: 1224 pt: 3.5414 eta: -0.283706 phi: 0.146851 charge: -1
+TStarTrack: 424 pt: 3.5414 eta: -0.283706 phi: 0.146851 charge: -1
+StPicoTrack: 1369 pt: 2.62184 eta: 0.307055 phi: -2.81762 charge: -1
+TStarTrack: 435 pt: 2.62184 eta: 0.307055 phi: 3.46557 charge: -1
+StPicoTower: 1571 Et: 2.07125 eta: 0.538597 phi: -2.80384
+TStarTower:162 Pt: 2.06768 eta: 0.538597 phi: 3.47934
+StPicoTower: 4300 Et: 7.57192 eta: -0.0690823 phi: 0.549457
+TStarTower:449 Pt: 7.57064 eta: -0.0690823 phi: 0.549457
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+7.25028 -0.446999 0.653568 7.98798
+3.15636 0.0990255 0.545295 3.17492
+2.71321 0.191155 3.36971 2.76646
+2.36537 0.23017 3.74853 2.43231
+2.26649 -0.801396 4.07209 3.0373
+2.30327 0.610132 4.50657 2.74899
+3.5414 -0.283706 0.146851 3.68752
+2.62184 0.307055 3.46557 2.74995
+2.06768 0.538597 3.47934 2.379
+7.57064 -0.0690823 0.549457 7.59
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 1
+Jet: 0 pt: 10.727 eta: -0.0441927 phi: 0.54884
+Constituent: 14 pt: 3.15636 eta: 0.0990255 phi: 0.545295
+Constituent: 449 pt: 7.57064 eta: -0.0690823 phi: 0.549457
+Jet # 0 pt: 10.727 eta: -0.0441927 phi: 0.54884
+Jet has 2 constituents
+Constituent # 0 index: 14 charge: -1
+___Constituent 0 is track # 14 pt: 3.15636 eta: 0.0990255 phi: 0.545295
+Constituent # 1 index: 449 charge: 0
+___Constituent 1 is tower # 449 Et: 7.57192 eta: -0.0690823 phi: 0.549457
+1 jets clustered, 1 jets stored.
+********** END StMyAnalysisMaker::runOverJets() done************
+StPicoMcTrack: 13 Pt: 3.16715 eta: 0.0984548 phi: 0.545081
+TStarGenTrack:2 Pt: 3.16715 eta: 0.0984548 phi: 0.545081
+StPicoMcTrack: 22 Pt: 2.64701 eta: 0.190893 phi: -2.91296
+TStarGenTrack:5 Pt: 2.64701 eta: 0.190893 phi: 3.37023
+StPicoMcTrack: 33 Pt: 3.68571 eta: -0.283931 phi: 0.146198
+TStarGenTrack:7 Pt: 3.68571 eta: -0.283931 phi: 0.146198
+StPicoMcTrack: 46 Pt: 2.58394 eta: 0.306979 phi: -2.8164
+TStarGenTrack:12 Pt: 2.58394 eta: 0.306979 phi: 3.46678
+StPicoMcTrack: 49 Pt: 2.35047 eta: 0.231099 phi: -2.53461
+TStarGenTrack:14 Pt: 2.35047 eta: 0.231099 phi: 3.74857
+StPicoMcTrack: 285 Pt: 9.20345 eta: -0.0458837 phi: 0.538702
+TStarGenTrack:47 Pt: 9.20345 eta: -0.0458837 phi: 0.538702
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+3.16715 0.0984548 0.545081 3.18557
+2.64701 0.190893 3.37023 2.69899
+3.68571 -0.283931 0.146198 3.83782
+2.58394 0.306979 3.46678 2.71025
+2.35047 0.231099 3.74857 2.41755
+9.20345 -0.0458837 0.538702 9.21314
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 1
+Jet: 0 pt: 12.3706 eta: -0.0306107 phi: 0.539377
+Constituent: 2 pt: 3.16715 eta: 0.0984548 phi: 0.545081
+Constituent: 47 pt: 9.20345 eta: -0.0458837 phi: 0.538702
+Gen Jet # 0 pt: 12.3706 eta: -0.0306107 phi: 0.539377
+Gen Jet has 2 constituents
+___Constituent 0 is gen track # 2 pt: 3.16715 eta: 0.0984548 phi: 0.545081
+___Constituent 1 is gen track # 47 pt: 9.20345 eta: -0.0458837 phi: 0.538702
+1 gen jets clustered, 1 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 197 pt: 2.27921 eta: 0.500595 phi: 2.37393 charge: -1
+TStarTrack: 82 pt: 2.27921 eta: 0.500595 phi: 2.37393 charge: -1
+StPicoTrack: 248 pt: 2.77261 eta: 0.274948 phi: 2.34589 charge: 1
+TStarTrack: 110 pt: 2.77261 eta: 0.274948 phi: 2.34589 charge: 1
+StPicoTrack: 419 pt: 2.63827 eta: -0.555446 phi: -1.64791 charge: -1
+TStarTrack: 186 pt: 2.63827 eta: -0.555446 phi: 4.63527 charge: -1
+StPicoTrack: 424 pt: 2.04975 eta: -0.241892 phi: -1.47826 charge: 1
+TStarTrack: 191 pt: 2.04975 eta: -0.241892 phi: 4.80493 charge: 1
+StPicoTrack: 496 pt: 12.1168 eta: -0.222269 phi: -0.947514 charge: 1
+TStarTrack: 222 pt: 12.1168 eta: -0.222269 phi: 5.33567 charge: 1
+StPicoTrack: 547 pt: 3.43741 eta: -0.286901 phi: -0.475743 charge: -1
+TStarTrack: 248 pt: 3.43741 eta: -0.286901 phi: 5.80744 charge: -1
+StPicoTrack: 911 pt: 2.01239 eta: 0.924271 phi: -2.69242 charge: 1
+TStarTrack: 385 pt: 2.01239 eta: 0.924271 phi: 3.59077 charge: 1
+StPicoTrack: 1079 pt: 2.21225 eta: 0.257361 phi: -0.862141 charge: 1
+TStarTrack: 429 pt: 2.21225 eta: 0.257361 phi: 5.42104 charge: 1
+StPicoTower: 389 Et: 2.62331 eta: 0.445524 phi: 0.290788
+TStarTower:43 Pt: 2.62025 eta: 0.445524 phi: 0.290788
+StPicoTower: 2043 Et: 14.71 eta: 0.142694 phi: 2.22316
+TStarTower:203 Pt: 14.7093 eta: 0.142694 phi: 2.22316
+StPicoTower: 2142 Et: 2.21252 eta: 0.0925264 phi: 1.9645
+TStarTower:213 Pt: 2.20815 eta: 0.0925264 phi: 1.9645
+StPicoTower: 4712 Et: 2.11803 eta: -0.651057 phi: 1.59571
+TStarTower:525 Pt: 2.11493 eta: -0.651057 phi: 1.59571
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+2.27921 0.500595 2.37393 2.57459
+2.77261 0.274948 2.34589 2.88146
+2.63827 -0.555446 4.63527 3.05901
+2.04975 -0.241892 4.80493 2.11462
+12.1168 -0.222269 5.33567 12.4181
+3.43741 -0.286901 5.80744 3.58257
+2.01239 0.924271 3.59077 2.93823
+2.21225 0.257361 5.42104 2.29017
+2.62025 0.445524 0.290788 2.888
+14.7093 0.142694 2.22316 14.86
+2.20815 0.0925264 1.9645 2.222
+2.11493 -0.651057 1.59571 2.583
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 2
+Jet: 0 pt: 21.9693 eta: 0.151025 phi: 2.22524
+Constituent: 82 pt: 2.27921 eta: 0.500595 phi: 2.37393
+Constituent: 213 pt: 2.20815 eta: 0.0925264 phi: 1.9645
+Constituent: 110 pt: 2.77261 eta: 0.274948 phi: 2.34589
+Constituent: 203 pt: 14.7093 eta: 0.142694 phi: 2.22316
+Jet # 0 pt: 21.9693 eta: 0.151025 phi: 2.22524
+Jet has 4 constituents
+Constituent # 0 index: 82 charge: -1
+___Constituent 0 is track # 82 pt: 2.27921 eta: 0.500595 phi: 2.37393
+Constituent # 1 index: 110 charge: 1
+___Constituent 1 is track # 110 pt: 2.77261 eta: 0.274948 phi: 2.34589
+Constituent # 2 index: 203 charge: 0
+___Constituent 2 is tower # 203 Et: 14.71 eta: 0.142694 phi: 2.22316
+Constituent # 3 index: 213 charge: 0
+___Constituent 3 is tower # 213 Et: 2.21252 eta: 0.0925264 phi: 1.9645
+Jet: 1 pt: 12.1168 eta: -0.222269 phi: 5.33567
+Constituent: 222 pt: 12.1168 eta: -0.222269 phi: 5.33567
+Jet # 1 pt: 12.1168 eta: -0.222269 phi: 5.33567
+Jet has 1 constituents
+Constituent # 0 index: 222 charge: 1
+___Constituent 0 is track # 222 pt: 12.1168 eta: -0.222269 phi: 5.33567
+2 jets clustered, 2 jets stored.
+********** END StMyAnalysisMaker::runOverJets() done************
+StPicoMcTrack: 2 Pt: 12.5757 eta: -0.222654 phi: -0.946958
+TStarGenTrack:0 Pt: 12.5757 eta: -0.222654 phi: 5.33623
+StPicoMcTrack: 9 Pt: 2.59481 eta: -0.556919 phi: -1.64648
+TStarGenTrack:2 Pt: 2.59481 eta: -0.556919 phi: 4.63671
+StPicoMcTrack: 21 Pt: 3.49372 eta: -0.286421 phi: -0.475808
+TStarGenTrack:5 Pt: 3.49372 eta: -0.286421 phi: 5.80738
+StPicoMcTrack: 36 Pt: 2.75703 eta: 0.275567 phi: 2.34648
+TStarGenTrack:10 Pt: 2.75703 eta: 0.275567 phi: 2.34648
+StPicoMcTrack: 41 Pt: 16.5325 eta: 0.138875 phi: 2.20682
+TStarGenTrack:13 Pt: 16.5325 eta: 0.138875 phi: 2.20682
+StPicoMcTrack: 63 Pt: 2.06926 eta: -0.599397 phi: -1.55497
+TStarGenTrack:19 Pt: 2.06926 eta: -0.599397 phi: 4.72822
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+12.5757 -0.222654 5.33623 12.8895
+2.59481 -0.556919 4.63671 3.01095
+3.49372 -0.286421 5.80738 3.75706
+2.75703 0.275567 2.34648 3.01223
+16.5325 0.138875 2.20682 16.6922
+2.06926 -0.599397 4.72822 2.50223
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 19.2896 eta: 0.142185 phi: 2.2106
+Constituent: 10 pt: 2.75703 eta: 0.275567 phi: 2.34648
+Constituent: 13 pt: 16.5325 eta: 0.138875 phi: 2.20682
+Gen Jet # 0 pt: 19.2896 eta: 0.142185 phi: 2.2106
+Gen Jet has 2 constituents
+___Constituent 0 is gen track # 10 pt: 2.75703 eta: 0.275567 phi: 2.34648
+___Constituent 1 is gen track # 13 pt: 16.5325 eta: 0.138875 phi: 2.20682
+Jet: 1 pt: 12.5757 eta: -0.222654 phi: 5.33623
+Constituent: 0 pt: 12.5757 eta: -0.222654 phi: 5.33623
+Gen Jet # 1 pt: 12.5757 eta: -0.222654 phi: 5.33623
+Gen Jet has 1 constituents
+___Constituent 0 is gen track # 0 pt: 12.5757 eta: -0.222654 phi: 5.33623
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 120 pt: 15.54 eta: -0.372176 phi: -2.6698 charge: 1
+TStarTrack: 21 pt: 15.54 eta: -0.372176 phi: 3.61339 charge: 1
+StPicoTrack: 123 pt: 17.3833 eta: -0.292782 phi: -2.65079 charge: -1
+TStarTrack: 22 pt: 17.3833 eta: -0.292782 phi: 3.6324 charge: -1
+StPicoTrack: 252 pt: 2.95249 eta: 0.178558 phi: 0.28122 charge: -1
+TStarTrack: 35 pt: 2.95249 eta: 0.178558 phi: 0.28122 charge: -1
+StPicoTrack: 418 pt: 8.16828 eta: 0.143523 phi: 0.473387 charge: -1
+TStarTrack: 43 pt: 8.16828 eta: 0.143523 phi: 0.473387 charge: -1
+StPicoMcTrack: 17 Pt: 16.0596 eta: -0.372318 phi: -2.66968
+TStarGenTrack:2 Pt: 16.0596 eta: -0.372318 phi: 3.61351
+StPicoMcTrack: 18 Pt: 16.7527 eta: -0.293009 phi: -2.65058
+TStarGenTrack:3 Pt: 16.7527 eta: -0.293009 phi: 3.6326
+StPicoMcTrack: 36 Pt: 3.08089 eta: 0.179051 phi: 0.276551
+TStarGenTrack:6 Pt: 3.08089 eta: 0.179051 phi: 0.276551
+StPicoMcTrack: 71 Pt: 8.62027 eta: 0.144142 phi: 0.470045
+TStarGenTrack:16 Pt: 8.62027 eta: 0.144142 phi: 0.470045
+StPicoMcTrack: 170 Pt: 2.01569 eta: 0.0894942 phi: 0.568667
+TStarGenTrack:31 Pt: 2.01569 eta: 0.0894942 phi: 0.568667
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+16.0596 -0.372318 3.61351 17.1862
+16.7527 -0.293009 3.6326 17.4775
+3.08089 0.179051 0.276551 3.13352
+8.62027 0.144142 0.470045 8.71109
+2.01569 0.0894942 0.568667 2.2307
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 32.8123 eta: -0.330978 phi: 3.62346
+Constituent: 2 pt: 16.0596 eta: -0.372318 phi: 3.61351
+Constituent: 3 pt: 16.7527 eta: -0.293009 phi: 3.6326
+Gen Jet # 0 pt: 32.8123 eta: -0.330978 phi: 3.62346
+Gen Jet has 2 constituents
+___Constituent 0 is gen track # 2 pt: 16.0596 eta: -0.372318 phi: 3.61351
+___Constituent 1 is gen track # 3 pt: 16.7527 eta: -0.293009 phi: 3.6326
+Jet: 1 pt: 13.7168 eta: 0.143801 phi: 0.459783
+Constituent: 6 pt: 3.08089 eta: 0.179051 phi: 0.276551
+Constituent: 16 pt: 8.62027 eta: 0.144142 phi: 0.470045
+Constituent: 31 pt: 2.01569 eta: 0.0894942 phi: 0.568667
+Gen Jet # 1 pt: 13.7168 eta: 0.143801 phi: 0.459783
+Gen Jet has 3 constituents
+___Constituent 0 is gen track # 6 pt: 3.08089 eta: 0.179051 phi: 0.276551
+___Constituent 1 is gen track # 16 pt: 8.62027 eta: 0.144142 phi: 0.470045
+___Constituent 2 is gen track # 31 pt: 2.01569 eta: 0.0894942 phi: 0.568667
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 0 pt: 2.12461 eta: -0.83569 phi: 0.480973 charge: 1
+TStarTrack: 0 pt: 2.12461 eta: -0.83569 phi: 0.480973 charge: 1
+StPicoTrack: 41 pt: 2.00144 eta: -0.019675 phi: 0.611957 charge: -1
+TStarTrack: 14 pt: 2.00144 eta: -0.019675 phi: 0.611957 charge: -1
+StPicoTrack: 200 pt: 2.21239 eta: 0.100735 phi: 1.698 charge: -1
+TStarTrack: 42 pt: 2.21239 eta: 0.100735 phi: 1.698 charge: -1
+StPicoTrack: 214 pt: 2.46435 eta: 0.480335 phi: 1.65519 charge: 1
+TStarTrack: 47 pt: 2.46435 eta: 0.480335 phi: 1.65519 charge: 1
+StPicoTrack: 554 pt: 2.16569 eta: 0.503786 phi: -2.51945 charge: 1
+TStarTrack: 135 pt: 2.16569 eta: 0.503786 phi: 3.76374 charge: 1
+StPicoTrack: 562 pt: 2.06511 eta: 0.639702 phi: -2.38407 charge: -1
+TStarTrack: 138 pt: 2.06511 eta: 0.639702 phi: 3.89911 charge: -1
+StPicoTrack: 693 pt: 2.63628 eta: -0.526812 phi: -1.69291 charge: 1
+TStarTrack: 170 pt: 2.63628 eta: -0.526812 phi: 4.59027 charge: 1
+StPicoTrack: 788 pt: 8.68748 eta: -0.500125 phi: -1.16171 charge: 1
+TStarTrack: 189 pt: 8.68748 eta: -0.500125 phi: 5.12148 charge: 1
+StPicoTrack: 826 pt: 2.22845 eta: 0.320099 phi: -1.33125 charge: 1
+TStarTrack: 202 pt: 2.22845 eta: 0.320099 phi: 4.95193 charge: 1
+StPicoTrack: 1679 pt: 2.96379 eta: -0.522276 phi: -0.96739 charge: -1
+TStarTrack: 329 pt: 2.96379 eta: -0.522276 phi: 5.3158 charge: -1
+StPicoTrack: 1956 pt: 2.176 eta: -0.233013 phi: -0.225226 charge: 1
+TStarTrack: 362 pt: 2.176 eta: -0.233013 phi: 6.05796 charge: 1
+StPicoTrack: 2009 pt: 4.13284 eta: -0.234103 phi: -2.52867 charge: -1
+TStarTrack: 364 pt: 4.13284 eta: -0.234103 phi: 3.75451 charge: -1
+StPicoTower: 2676 Et: 2.16476 eta: -0.790976 phi: 2.53701
+TStarTower:478 Pt: 2.16222 eta: -0.790976 phi: 2.53701
+StPicoTower: 3084 Et: 3.64611 eta: -0.181001 phi: -2.644
+TStarTower:545 Pt: 3.64352 eta: -0.181001 phi: 3.63919
+StPicoTower: 3143 Et: 2.50461 eta: -0.130606 phi: -2.48962
+TStarTower:567 Pt: 2.50078 eta: -0.130606 phi: 3.79357
+StPicoMcTrack: 0 Pt: 2.94839 eta: -0.52153 phi: -0.967817
+TStarGenTrack:0 Pt: 2.94839 eta: -0.52153 phi: 5.31537
+StPicoMcTrack: 1 Pt: 8.87333 eta: -0.50018 phi: -1.16139
+TStarGenTrack:1 Pt: 8.87333 eta: -0.50018 phi: 5.12179
+StPicoMcTrack: 13 Pt: 2.23539 eta: 0.101625 phi: 1.69708
+TStarGenTrack:3 Pt: 2.23539 eta: 0.101625 phi: 1.69708
+StPicoMcTrack: 32 Pt: 2.50059 eta: 0.482061 phi: 1.65535
+TStarGenTrack:4 Pt: 2.50059 eta: 0.482061 phi: 1.65535
+StPicoMcTrack: 34 Pt: 2.86466 eta: -0.119837 phi: -2.565
+TStarGenTrack:5 Pt: 2.86466 eta: -0.119837 phi: 3.71818
+StPicoMcTrack: 36 Pt: 3.78291 eta: -0.234896 phi: -2.5264
+TStarGenTrack:6 Pt: 3.78291 eta: -0.234896 phi: 3.75679
+StPicoMcTrack: 45 Pt: 3.96714 eta: -0.139555 phi: -2.66565
+TStarGenTrack:10 Pt: 3.96714 eta: -0.139555 phi: 3.61754
+StPicoMcTrack: 66 Pt: 5.13888 eta: -0.158654 phi: -2.62781
+TStarGenTrack:14 Pt: 5.13888 eta: -0.158654 phi: 3.65538
+StPicoMcTrack: 68 Pt: 3.55437 eta: -0.142261 phi: -2.73363
+TStarGenTrack:16 Pt: 3.55437 eta: -0.142261 phi: 3.54955
+Running over gen jets...
+**********StMyAnalysisMaker::runOverGenJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+2.94839 -0.52153 5.31537 3.36143
+8.87333 -0.50018 5.12179 10.0076
+2.23539 0.101625 1.69708 2.30054
+2.50059 0.482061 1.65535 2.80029
+2.86466 -0.119837 3.71818 2.88863
+3.78291 -0.234896 3.75679 3.89025
+3.96714 -0.139555 3.61754 4.03663
+5.13888 -0.158654 3.65538 5.20369
+3.55437 -0.142261 3.54955 3.5904
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Gen Jet Summary: ***************
+Number of gen jets: 2
+Jet: 0 pt: 19.308 eta: -0.152673 phi: 3.64672
+Constituent: 6 pt: 3.78291 eta: -0.234896 phi: 3.75679
+Constituent: 16 pt: 3.55437 eta: -0.142261 phi: 3.54955
+Constituent: 5 pt: 2.86466 eta: -0.119837 phi: 3.71818
+Constituent: 10 pt: 3.96714 eta: -0.139555 phi: 3.61754
+Constituent: 14 pt: 5.13888 eta: -0.158654 phi: 3.65538
+Gen Jet # 0 pt: 19.308 eta: -0.152673 phi: 3.64672
+Gen Jet has 5 constituents
+___Constituent 0 is gen track # 5 pt: 2.86466 eta: -0.119837 phi: 3.71818
+___Constituent 1 is gen track # 6 pt: 3.78291 eta: -0.234896 phi: 3.75679
+___Constituent 2 is gen track # 10 pt: 3.96714 eta: -0.139555 phi: 3.61754
+___Constituent 3 is gen track # 14 pt: 5.13888 eta: -0.158654 phi: 3.65538
+___Constituent 4 is gen track # 16 pt: 3.55437 eta: -0.142261 phi: 3.54955
+Jet: 1 pt: 11.8217 eta: -0.502198 phi: 5.14104
+Constituent: 0 pt: 2.94839 eta: -0.52153 phi: 5.31537
+Constituent: 1 pt: 8.87333 eta: -0.50018 phi: 5.12179
+Gen Jet # 1 pt: 11.8217 eta: -0.502198 phi: 5.14104
+Gen Jet has 2 constituents
+___Constituent 0 is gen track # 0 pt: 2.94839 eta: -0.52153 phi: 5.31537
+___Constituent 1 is gen track # 1 pt: 8.87333 eta: -0.50018 phi: 5.12179
+2 gen jets clustered, 2 gen jets stored.
+********** END StMyAnalysisMaker::runOverGenJets() done************
+Getting jet maker...
+Got StMyJetMaker!
+Getting gen-level jet maker...
+Got Gen level StJetMaker!
+StPicoTrack: 0 pt: 5.5666 eta: -0.386422 phi: 0.553004 charge: 1
+TStarTrack: 0 pt: 5.5666 eta: -0.386422 phi: 0.553004 charge: 1
+StPicoTrack: 2 pt: 7.17226 eta: -0.37657 phi: 0.570353 charge: -1
+TStarTrack: 1 pt: 7.17226 eta: -0.37657 phi: 0.570353 charge: -1
+StPicoTrack: 3 pt: 5.0985 eta: -0.290124 phi: 0.698203 charge: 1
+TStarTrack: 2 pt: 5.0985 eta: -0.290124 phi: 0.698203 charge: 1
+StPicoTrack: 4 pt: 2.26174 eta: -0.266216 phi: 0.488366 charge: 1
+TStarTrack: 3 pt: 2.26174 eta: -0.266216 phi: 0.488366 charge: 1
+StPicoTrack: 5 pt: 7.11951 eta: -0.219128 phi: 0.550521 charge: -1
+TStarTrack: 4 pt: 7.11951 eta: -0.219128 phi: 0.550521 charge: -1
+StPicoTrack: 73 pt: 4.67843 eta: -0.317933 phi: -2.58161 charge: 1
+TStarTrack: 37 pt: 4.67843 eta: -0.317933 phi: 3.70158 charge: 1
+StPicoTrack: 74 pt: 2.5014 eta: -0.192865 phi: -2.69312 charge: -1
+TStarTrack: 38 pt: 2.5014 eta: -0.192865 phi: 3.59007 charge: -1
+StPicoTrack: 75 pt: 2.76813 eta: -0.122816 phi: -2.57253 charge: -1
+TStarTrack: 39 pt: 2.76813 eta: -0.122816 phi: 3.71066 charge: -1
+StPicoTrack: 76 pt: 9.98472 eta: -0.0387678 phi: -2.63185 charge: 1
+TStarTrack: 40 pt: 9.98472 eta: -0.0387678 phi: 3.65133 charge: 1
+StPicoTrack: 77 pt: 2.50009 eta: -0.035528 phi: -2.62914 charge: 1
+TStarTrack: 41 pt: 2.50009 eta: -0.035528 phi: 3.65404 charge: 1
+StPicoTower: 3081 Et: 4.75029 eta: -0.163591 phi: -2.64437
+TStarTower:39 Pt: 4.7483 eta: -0.163591 phi: 3.63881
+StPicoTower: 3101 Et: 3.06292 eta: -0.163604 phi: -2.59477
+TStarTower:40 Pt: 3.05982 eta: -0.163604 phi: 3.68841
+Running over jets...
+**********StMyAnalysisMaker::runOverJets()************
+Jet cuts: 
+(pt >= 10 * |eta| <= 0.6)
+constituents: 
+15.54 -0.372176 3.61339 16.6293
+17.3833 -0.292782 3.6324 18.1343
+2.95249 0.178558 0.28122 3.00293
+8.16828 0.143523 0.473387 8.25374
+2.12461 -0.83569 0.480973 2.91404
+2.00144 -0.019675 0.611957 2.00669
+2.21239 0.100735 1.698 2.22801
+2.46435 0.480335 1.65519 2.75768
+2.16569 0.503786 3.76374 2.45036
+2.06511 0.639702 3.89911 2.50614
+2.63628 -0.526812 4.59027 3.01388
+8.68748 -0.500125 5.12148 9.79779
+2.22845 0.320099 4.95193 2.34775
+2.96379 -0.522276 5.3158 3.38017
+2.176 -0.233013 6.05796 2.23969
+4.13284 -0.234103 3.75451 4.2489
+2.16222 -0.790976 2.53701 2.878
+3.64352 -0.181001 3.63919 3.706
+2.50078 -0.130606 3.79357 2.526
+5.5666 -0.386422 0.553004 5.98903
+7.17226 -0.37657 0.570353 7.6881
+5.0985 -0.290124 0.698203 5.31642
+2.26174 -0.266216 0.488366 2.34651
+7.11951 -0.219128 0.550521 7.29246
+4.67843 -0.317933 3.70158 4.91886
+2.5014 -0.192865 3.59007 2.55188
+2.76813 -0.122816 3.71066 2.79252
+9.98472 -0.0387678 3.65133 9.9932
+2.50009 -0.035528 3.65404 2.50556
+4.7483 -0.163591 3.63881 4.814
+3.05982 -0.163604 3.68841 3.104
+***************** Done clustering jets ! *******************
+***************** Done clearing vectors ! *******************
+*************** Jet Summary: ***************
+Number of jets: 4
+Jet: 0 pt: 73.4413 eta: -0.300523 phi: 3.63188
+Constituent: 40 pt: 9.98472 eta: -0.0387678 phi: 3.65133
+Constituent: 41 pt: 2.50009 eta: -0.035528 phi: 3.65404
+Constituent: 567 pt: 2.50078 eta: -0.130606 phi: 3.79357
+Constituent: 39 pt: 2.76813 eta: -0.122816 phi: 3.71066
+Constituent: 40 pt: 3.05982 eta: -0.163604 phi: 3.68841
+Constituent: 364 pt: 4.13284 eta: -0.234103 phi: 3.75451
+Constituent: 545 pt: 3.64352 eta: -0.181001 phi: 3.63919
+Constituent: 39 pt: 4.7483 eta: -0.163591 phi: 3.63881
+Constituent: 38 pt: 2.5014 eta: -0.192865 phi: 3.59007
+Constituent: 21 pt: 15.54 eta: -0.372176 phi: 3.61339
+Constituent: 22 pt: 17.3833 eta: -0.292782 phi: 3.6324
+Constituent: 37 pt: 4.67843 eta: -0.317933 phi: 3.70158
+Jet # 0 pt: 73.4413 eta: -0.300523 phi: 3.63188
+Jet has 12 constituents
+Constituent # 0 index: 21 charge: 1
+___Constituent 0 is track # 21 pt: 0.955838 eta: -0.262552 phi: 2.12924
+Constituent # 1 index: 22 charge: -1
+___Constituent 1 is track # 22 pt: 1.94649 eta: -0.121204 phi: 2.23725
+Constituent # 2 index: 37 charge: 1
+___Constituent 2 is track # 37 pt: 4.67843 eta: -0.317933 phi: 3.70158
+Constituent # 3 index: 38 charge: -1
+___Constituent 3 is track # 38 pt: 2.5014 eta: -0.192865 phi: 3.59007
+Constituent # 4 index: 39 charge: -1
+___Constituent 4 is track # 39 pt: 2.76813 eta: -0.122816 phi: 3.71066
+Constituent # 5 index: 39 charge: 0
+___Constituent 5 is tower # 39 Et: 4.75029 eta: -0.163591 phi: 3.63881
+Constituent # 6 index: 40 charge: 1
+___Constituent 6 is track # 40 pt: 9.98472 eta: -0.0387678 phi: 3.65133
+Constituent # 7 index: 40 charge: 0
+___Constituent 7 is tower # 40 Et: 3.06292 eta: -0.163604 phi: 3.68841
+Constituent # 8 index: 41 charge: 1
+___Constituent 8 is track # 41 pt: 2.50009 eta: -0.035528 phi: 3.65404
+Constituent # 9 index: 364 charge: -1
+StQAInfo: =================================================================================
+StQAInfo: QAInfo:Chain              StChain::bfcChain             Ast =  7.62        Cpu =  2.55
+StQAInfo: QAInfo:Maker         StMyJetMaker::genJetMaker          Ast =  0.00( 0.0%) Cpu =  0.00( 0.0%)
+StQAInfo: QAInfo:Maker         StMyJetMaker::jetMaker             Ast =  0.00( 0.0%) Cpu =  0.00( 0.0%)
+StQAInfo: QAInfo:Maker    StMyAnalysisMaker::analysisMaker        Ast =  6.21(81.5%) Cpu =  1.72(67.5%)
+StQAInfo: QAInfo:Maker       StPicoDstMaker::picoDst              Ast =  1.41(18.5%) Cpu =  0.83(32.5%)
+StMyJetMaker::Finish()
+Wrote hConstituentCharge
+Wrote hConstituentEta
+Wrote hConstituentPhi
+Wrote hConstituentPt
+Wrote hJetArea
+Wrote hJetEta
+Wrote hJetMass
+Wrote hJetPhi
+Wrote hJetPt
+Wrote hNConstituents
+Wrote hNJets
+Wrote h2ConstitEtavPhi
+Wrote h2JetEtavPhi
+Wrote h2JetPtvArea
+Wrote h2JetPtvMass
+Wrote h2JetPtvNConstituents
+Wrote histograms to Histograms_test.root
+StMyJetMaker::Finish()
+Wrote hConstituentCharge
+Wrote hConstituentEta
+Wrote hConstituentPhi
+Wrote hConstituentPt
+Wrote hJetArea
+Wrote hJetEta
+Wrote hJetMass
+Wrote hJetPhi
+Wrote hJetPt
+Wrote hNConstituents
+Wrote hNJets
+Wrote h2ConstitEtavPhi
+Wrote h2JetEtavPhi
+Wrote h2JetPtvArea
+Wrote h2JetPtvMass
+Wrote h2JetPtvNConstituents
+Wrote histograms to Histograms_test.root
+StMyAnalysisMaker::Finish()
+StInfo: --------------Error Codes-------------------------
+StInfo:      nStOK   nStWarn    nStEOF    nStErr  nStFatal
+StInfo:         65         0         0         0         0
+StInfo: --------------------------------------------------
+               StMemStat::Summary(calls)        Min        Aver         Max         RMS 
+=============================================================================================
+*** Chain not deleted***
+
+This is the end of ROOT -- Goodbye
+

@@ -20,7 +20,6 @@ TStarJet::TStarJet(const TStarJet& j) : TStarVector(j) {
     _Az = j._Az;
     _Rho = j._Rho;
     _Sigma = j._Sigma;
-    _ConstituentIndices = j._ConstituentIndices; 
 }
 
 TStarJet::~TStarJet(){
@@ -35,5 +34,4 @@ void TStarJet::setJet(const TStarJet& jet){
     _Az = jet._Az;
     _Rho = jet._Rho;
     _Sigma = jet._Sigma;
-    _ConstituentIndices = jet._ConstituentIndices;
 }
